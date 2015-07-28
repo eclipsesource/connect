@@ -1,0 +1,133 @@
+{
+    "after": "b03185597ebb5f2c819037c4b682384bdcd08fe1",
+    "before": "0dfbd83d259ee7618e0a9404ba357fa26d76c990",
+    "commits": [
+        {
+            "added": [],
+            "author": {
+                "email": "hstaudacher+foo-connect@eclipsesource.com",
+                "name": "Mr. Roboto",
+                "username": "foo-connect"
+            },
+            "committer": {
+                "email": "hstaudacher+foo-connect@eclipsesource.com",
+                "name": "Mr. Roboto",
+                "username": "foo-connect"
+            },
+            "distinct": true,
+            "id": "b03185597ebb5f2c819037c4b682384bdcd08fe1",
+            "message": "Update README.md",
+            "modified": [
+                "README.md"
+            ],
+            "removed": [],
+            "timestamp": "2014-08-19T15:12:17+02:00",
+            "url": "https://github.com/foo-connect-org/public-test/commit/b03185597ebb5f2c819037c4b682384bdcd08fe1"
+        }
+    ],
+    "compare": "https://github.com/foo-connect-org/public-test/compare/0dfbd83d259e...b03185597ebb",
+    "created": false,
+    "deleted": false,
+    "forced": false,
+    "head_commit": {
+        "added": [],
+        "author": {
+            "email": "hstaudacher+foo-connect@eclipsesource.com",
+            "name": "Mr. Roboto",
+            "username": "foo-connect"
+        },
+        "committer": {
+            "email": "hstaudacher+foo-connect@eclipsesource.com",
+            "name": "Mr. Roboto",
+            "username": "foo-connect"
+        },
+        "distinct": true,
+        "id": "b03185597ebb5f2c819037c4b682384bdcd08fe1",
+        "message": "Update README.md",
+        "modified": [
+            "README.md"
+        ],
+        "removed": [],
+        "timestamp": "2014-08-19T15:12:17+02:00",
+        "url": "https://github.com/foo-connect-org/public-test/commit/b03185597ebb5f2c819037c4b682384bdcd08fe1"
+    },
+    "pusher": {
+        "email": "hstaudacher+foo-connect@eclipsesource.com",
+        "name": "foo-connect"
+    },
+    "ref": "refs/heads/master",
+    "repository": {
+        "archive_url": "https://api.github.com/repos/foo-connect-org/public-test/{archive_format}{/ref}",
+        "assignees_url": "https://api.github.com/repos/foo-connect-org/public-test/assignees{/user}",
+        "blobs_url": "https://api.github.com/repos/foo-connect-org/public-test/git/blobs{/sha}",
+        "branches_url": "https://api.github.com/repos/foo-connect-org/public-test/branches{/branch}",
+        "clone_url": "https://github.com/foo-connect-org/public-test.git",
+        "collaborators_url": "https://api.github.com/repos/foo-connect-org/public-test/collaborators{/collaborator}",
+        "comments_url": "https://api.github.com/repos/foo-connect-org/public-test/comments{/number}",
+        "commits_url": "https://api.github.com/repos/foo-connect-org/public-test/commits{/sha}",
+        "compare_url": "https://api.github.com/repos/foo-connect-org/public-test/compare/{base}...{head}",
+        "contents_url": "https://api.github.com/repos/foo-connect-org/public-test/contents/{+path}",
+        "contributors_url": "https://api.github.com/repos/foo-connect-org/public-test/contributors",
+        "created_at": 1408447383,
+        "default_branch": "master",
+        "description": "",
+        "downloads_url": "https://api.github.com/repos/foo-connect-org/public-test/downloads",
+        "events_url": "https://api.github.com/repos/foo-connect-org/public-test/events",
+        "fork": false,
+        "forks": 0,
+        "forks_count": 0,
+        "forks_url": "https://api.github.com/repos/foo-connect-org/public-test/forks",
+        "full_name": "foo-connect-org/public-test",
+        "git_commits_url": "https://api.github.com/repos/foo-connect-org/public-test/git/commits{/sha}",
+        "git_refs_url": "https://api.github.com/repos/foo-connect-org/public-test/git/refs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/foo-connect-org/public-test/git/tags{/sha}",
+        "git_url": "git://github.com/foo-connect-org/public-test.git",
+        "has_downloads": true,
+        "has_issues": true,
+        "has_wiki": true,
+        "homepage": null,
+        "hooks_url": "https://api.github.com/repos/foo-connect-org/public-test/hooks",
+        "html_url": "https://github.com/foo-connect-org/public-test",
+        "id": 23107533,
+        "issue_comment_url": "https://api.github.com/repos/foo-connect-org/public-test/issues/comments/{number}",
+        "issue_events_url": "https://api.github.com/repos/foo-connect-org/public-test/issues/events{/number}",
+        "issues_url": "https://api.github.com/repos/foo-connect-org/public-test/issues{/number}",
+        "keys_url": "https://api.github.com/repos/foo-connect-org/public-test/keys{/key_id}",
+        "labels_url": "https://api.github.com/repos/foo-connect-org/public-test/labels{/name}",
+        "language": null,
+        "languages_url": "https://api.github.com/repos/foo-connect-org/public-test/languages",
+        "master_branch": "master",
+        "merges_url": "https://api.github.com/repos/foo-connect-org/public-test/merges",
+        "milestones_url": "https://api.github.com/repos/foo-connect-org/public-test/milestones{/number}",
+        "mirror_url": null,
+        "name": "public-test",
+        "notifications_url": "https://api.github.com/repos/foo-connect-org/public-test/notifications{?since,all,participating}",
+        "open_issues": 0,
+        "open_issues_count": 0,
+        "organization": "foo-connect-org",
+        "owner": {
+            "email": null,
+            "name": "foo-connect-org"
+        },
+        "private": false,
+        "pulls_url": "https://api.github.com/repos/foo-connect-org/public-test/pulls{/number}",
+        "pushed_at": 1408453937,
+        "releases_url": "https://api.github.com/repos/foo-connect-org/public-test/releases{/id}",
+        "size": 0,
+        "ssh_url": "git@github.com:foo-connect-org/public-test.git",
+        "stargazers": 0,
+        "stargazers_count": 0,
+        "stargazers_url": "https://api.github.com/repos/foo-connect-org/public-test/stargazers",
+        "statuses_url": "https://api.github.com/repos/foo-connect-org/public-test/statuses/{sha}",
+        "subscribers_url": "https://api.github.com/repos/foo-connect-org/public-test/subscribers",
+        "subscription_url": "https://api.github.com/repos/foo-connect-org/public-test/subscription",
+        "svn_url": "https://github.com/foo-connect-org/public-test",
+        "tags_url": "https://api.github.com/repos/foo-connect-org/public-test/tags",
+        "teams_url": "https://api.github.com/repos/foo-connect-org/public-test/teams",
+        "trees_url": "https://api.github.com/repos/foo-connect-org/public-test/git/trees{/sha}",
+        "updated_at": "2014-08-19T11:23:03Z",
+        "url": "https://github.com/foo-connect-org/public-test",
+        "watchers": 0,
+        "watchers_count": 0
+    }
+}

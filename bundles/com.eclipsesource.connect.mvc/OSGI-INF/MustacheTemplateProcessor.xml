@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="MustacheTemplateProcessor">
+   <implementation class="com.eclipsesource.connect.mvc.internal.MustacheTemplateProcessor"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.mvc.internal.MustacheTemplateProcessor"/>
+   </service>
+   <reference bind="setAssetsFinder" cardinality="1..1" interface="com.eclipsesource.connect.api.asset.AssetsFinder" name="AssetsFinder" policy="static" unbind="unsetAssetsFinder"/>ndler"/>
+</scr:component>

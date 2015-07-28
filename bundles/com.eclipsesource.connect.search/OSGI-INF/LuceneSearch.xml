@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="LuceneSearch">
+   <implementation class="com.eclipsesource.connect.search.LuceneSearch"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.api.search.Search"/>
+   </service>
+   <reference bind="addSearchParticipant" cardinality="0..n" interface="com.eclipsesource.connect.api.search.SearchParticipant" name="SearchParticipant" policy="dynamic" unbind="removeSearchParticipant"/>
+</scr:component>

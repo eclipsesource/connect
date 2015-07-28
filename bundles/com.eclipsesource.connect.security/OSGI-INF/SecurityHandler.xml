@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="SecurityHandler">
+   <implementation class="com.eclipsesource.connect.security.authentication.SecurityHandler"/>
+   <service>
+      <provide interface="com.eclipsesource.jaxrs.provider.security.AuthorizationHandler"/>
+      <provide interface="com.eclipsesource.jaxrs.provider.security.AuthenticationHandler"/>
+   </service>
+   <reference bind="setTokenAdmin" cardinality="1..1" interface="com.eclipsesource.connect.api.security.TokenAdmin" name="TokenAdmin" policy="static" unbind="unsetTokenAdmin"/>
+</scr:component>

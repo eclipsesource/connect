@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <prerequisites>
+    <maven>3.0</maven>
+  </prerequisites>
+
+  <groupId>com.eclipsesource.connect</groupId>
+  <artifactId>com.eclipsesource.connect</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Connect</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <tycho-version>0.23.1</tycho-version>
+    <tycho-extras-version>0.23.1</tycho-extras-version>
+    <tycho-groupid>org.eclipse.tycho</tycho-groupid>
+    <surefire-version>2.17</surefire-version>
+    <junit-version>4.11</junit-version>
+    <mockito-version>1.9.5</mockito-version>
+    <findbugs-version>3.0.1</findbugs-version>
+    <jacocoagent>${basedir}/../../build/com.eclipsesource.connect.build/lib/jacocoagent.jar</jacocoagent>
+    <test-arguments>-Xms512m -Xmx512m
+      -javaagent:${jacocoagent}=destfile=${basedir}/../../build/com.eclipsesource.connect.build/target/jacoco.exec,append=true</test-arguments>
+  </properties>
+
+  <modules>
+    <!-- Platform -->
+    <module>../../bundles/com.eclipsesource.connect.model</module>
+    <module>../../bundles/com.eclipsesource.connect.api</module>
+    <module>../../bundles/com.eclipsesource.connect.serialization</module>
+    <module>../../bundles/com.eclipsesource.connect.persistence</module>
+    <module>../../bundles/com.eclipsesource.connect.mail</module>
+    <module>../../bundles/com.eclipsesource.connect.mvc</module>
+    <module>../../bundles/com.eclipsesource.connect.inject</module>
+    <module>../../bundles/com.eclipsesource.connect.security</module>
+    <module>../../bundles/com.eclipsesource.connect.connector.github</module>
+    <module>../../bundles/com.eclipsesource.connect.connector.stackexchange</module>
+    <module>../../bundles/com.eclipsesource.connect.markdown</module>
+    <module>../../bundles/com.eclipsesource.connect.search</module>
+    <!-- Tests -->
+    <module>../../tests/com.eclipsesource.connect.test.util</module>
+    <module>../../tests/com.eclipsesource.connect.model.test</module>
+    <module>../../tests/com.eclipsesource.connect.api.test</module>
+    <module>../../tests/com.eclipsesource.connect.serialization.test</module>
+    <module>../../tests/com.eclipsesource.connect.persistence.test</module>
+    <module>../../tests/com.eclipsesource.connect.mail.test</module>
+    <module>../../tests/com.eclipsesource.connect.mvc.test</module>
+    <module>../../tests/com.eclipsesource.connect.inject.test</module>
+    <module>../../tests/com.eclipsesource.connect.security.test</module>
+    <module>../../tests/com.eclipsesource.connect.connector.github.test</module>
+    <module>../../tests/com.eclipsesource.connect.connector.stackexchange.test</module>
+    <module>../../tests/com.eclipsesource.connect.markdown.test</module>
+    <module>../../tests/com.eclipsesource.connect.search.test</module>
+    <!-- Features -->
+    <module>../com.eclipsesource.connect.runtime.feature</module>
+    <module>../com.eclipsesource.connect.feature</module>
+    <module>../com.eclipsesource.connect.testing.feature</module>
+    <!-- Repository -->
+    <module>../com.eclipsesource.connect.repository</module>
+  </modules>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>${tycho-groupid}</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <extensions>true</extensions>
+      </plugin>
+
+      <plugin>
+        <groupId>${tycho-groupid}</groupId>
+        <artifactId>tycho-compiler-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>${tycho-groupid}</groupId>
+        <artifactId>tycho-source-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <executions>
+          <execution>
+            <id>plugin-source</id>
+            <goals>
+              <goal>plugin-source</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>${tycho-groupid}</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <resolver>p2</resolver>
+          <ignoreTychoRepositories>true</ignoreTychoRepositories>
+          <target>
+            <artifact>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>${project.artifactId}</artifactId>
+              <version>${project.version}</version>
+              <classifier>${project.parent.relativePath}/../com.eclipsesource.connect.target/all-in-one</classifier>
+            </artifact>
+          </target>
+          <environments>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86_64</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.eclipse.tycho.extras</groupId>
+        <artifactId>tycho-source-feature-plugin</artifactId>
+        <version>${tycho-extras-version}</version>
+        <executions>
+          <execution>
+            <id>source-feature</id>
+            <phase>package</phase>
+            <goals>
+              <goal>source-feature</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-p2-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <executions>
+          <execution>
+            <id>attach-p2-metadata</id>
+            <phase>package</phase>
+            <goals>
+              <goal>p2-metadata</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+    </plugins>
+  </build>
+
+</project>

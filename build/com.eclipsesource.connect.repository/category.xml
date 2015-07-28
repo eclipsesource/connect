@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.eclipsesource.connect.runtime_1.0.0.qualifier.jar" id="com.eclipsesource.connect.runtime" version="1.0.0.qualifier">
+      <category name="com.eclipsesource.connect"/>
+   </feature>
+   <feature url="features/com.eclipsesource.connect.platform_1.0.0.qualifier.jar" id="com.eclipsesource.connect.platform" version="1.0.0.qualifier">
+      <category name="com.eclipsesource.connect"/>
+   </feature>
+   <feature url="features/com.eclipsesource.connect.testing_1.0.0.qualifier.jar" id="com.eclipsesource.connect.testing" version="1.0.0.qualifier">
+      <category name="com.eclipsesource.connect"/>
+   </feature>
+   <feature url="features/com.eclipsesource.connect.runtime.source_1.0.0.qualifier.jar" id="com.eclipsesource.connect.runtime.source" version="1.0.0.qualifier">
+      <category name="com.eclipsesource.connect.sources"/>
+   </feature>
+   <feature url="features/com.eclipsesource.connect.platform.source_1.0.0.qualifier.jar" id="com.eclipsesource.connect.platform.source" version="1.0.0.qualifier">
+      <category name="com.eclipsesource.connect.sources"/>
+   </feature>
+   <feature url="features/com.eclipsesource.connect.testing.source_1.0.0.qualifier.jar" id="com.eclipsesource.connect.testing.source" version="1.0.0.qualifier">
+      <category name="com.eclipsesource.connect.sources"/>
+   </feature>
+   <category-def name="com.eclipsesource.connect" label="Connect"/>
+   <category-def name="com.eclipsesource.connect.sources" label="Connect Sources"/>
+</site>

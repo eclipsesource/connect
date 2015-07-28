@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Platform Mail Integration
+Bundle-SymbolicName: com.eclipsesource.connect.mail
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EclipseSource
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Require-Bundle: javax.mail.glassfish;bundle-version="1.4.1",
+ javax.activation;bundle-version="1.1.0"
+Import-Package: com.eclipsesource.connect.api.asset;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.mail;version="[1.0.0,2.0.0)",
+ com.github.mustachejava;version="[0.8.15,1.0.0)",
+ com.google.common.base;version="[17.0.0,20.0.0)",
+ com.google.common.io;version="[17.0.0,20.0.0)",
+ com.google.common.util.concurrent;version="[17.0.0,20.0.0)",
+ org.osgi.service.cm;version="[1.2.0,2.0.0)"
+Service-Component: OSGI-INF/*.xml

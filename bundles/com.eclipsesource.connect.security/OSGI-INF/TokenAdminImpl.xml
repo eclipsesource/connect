@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="TokenAdminImpl">
+   <implementation class="com.eclipsesource.connect.security.authentication.TokenAdminImpl"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.api.security.TokenAdmin"/>
+      <provide interface="com.eclipsesource.connect.api.persistence.StorageObserver"/>
+   </service>
+   <reference bind="setStorage" cardinality="1..1" interface="com.eclipsesource.connect.api.persistence.Storage" name="Storage" policy="static" unbind="unsetStorage"/>
+</scr:component>

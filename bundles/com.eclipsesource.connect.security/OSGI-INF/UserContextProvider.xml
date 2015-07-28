@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="UserContextProvider">
+   <implementation class="com.eclipsesource.connect.security.injection.UserContextProvider"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.api.inject.ConnectProvider"/>
+   </service>
+</scr:component>

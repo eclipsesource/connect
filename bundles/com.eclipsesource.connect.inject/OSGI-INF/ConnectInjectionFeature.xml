@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="ConnectInjectionFeature">
+   <implementation class="com.eclipsesource.connect.inject.ConnectInjectionFeature"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.inject.ConnectInjectionFeature"/>
+   </service>
+   <reference bind="addConnectProvider" cardinality="0..n" interface="com.eclipsesource.connect.api.inject.ConnectProvider" name="ConnectProvider" policy="dynamic" unbind="removeConnectProvider"/>
+</scr:component>

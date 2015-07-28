@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GitHub Connector
+Bundle-SymbolicName: com.eclipsesource.connect.connector.github
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EclipseSource
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: com.eclipsesource.connect.connector.github;version="1.0.0",
+ com.eclipsesource.connect.connector.github.model;version="1.0.0"
+Import-Package: com.eclipsesource.connect.api.html;version="[1.0.0,2.0.0)",
+ com.google.common.base;version="[17.0.0,20.0.0)",
+ com.google.common.collect;version="[17.0.0,20.0.0)",
+ com.google.gson;version="[2.2.4,3.0.0)",
+ com.google.gson.annotations;version="[2.2.4,3.0.0)",
+ javax.ws.rs;version="[2.0.0,3.0.0)",
+ javax.ws.rs.client;version="[2.0.0,3.0.0)",
+ javax.ws.rs.core;version="[2.0.0,3.0.0)",
+ javax.ws.rs.ext;version="[2.0.0,3.0.0)"

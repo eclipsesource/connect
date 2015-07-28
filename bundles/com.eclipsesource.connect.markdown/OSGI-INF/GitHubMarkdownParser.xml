@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="GitHubMarkdownParser">
+   <implementation class="com.eclipsesource.connect.markdown.GitHubMarkdownParser"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.api.markdown.MarkdownParser"/>
+   </service>
+   <reference bind="setConfiguration" cardinality="1..1" interface="com.eclipsesource.connect.markdown.GitHubMarkdownParserConfiguration" name="GitHubMarkdownParserConfiguration" policy="static" unbind="unsetConfiguration"/>
+</scr:component>

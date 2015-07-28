@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="ETagRequestFilter">
+   <implementation class="com.eclipsesource.connect.mvc.internal.etag.ETagRequestFilter"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.mvc.internal.etag.ETagRequestFilter"/>
+   </service>
+   <reference bind="setETagCache" cardinality="1..1" interface="com.eclipsesource.connect.mvc.internal.etag.ETagCache" name="ETagCache" policy="static" unbind="unsetETagCache"/>
+</scr:component>

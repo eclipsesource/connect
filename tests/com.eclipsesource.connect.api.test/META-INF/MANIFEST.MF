@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Platform API Test
+Bundle-SymbolicName: com.eclipsesource.connect.api.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EclipseSource
+Fragment-Host: com.eclipsesource.connect.api;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.junit;bundle-version="[4.11.0,5.0.0)",
+ org.mockito.mockito-all;bundle-version="[1.9.0,2.0.0)",
+ org.assertj.core;bundle-version="[1.6.0,2.0.0)"
+Import-Package: com.google.common.hash;version="[18.0.0,20.0.0)"

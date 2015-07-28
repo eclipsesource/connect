@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Connect Security
+Bundle-SymbolicName: com.eclipsesource.connect.security
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EclipseSource
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.eclipsesource.connect.api.inject;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.persistence;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.security;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.util;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.model;version="[1.0.0,2.0.0)",
+ com.eclipsesource.jaxrs.provider.security;version="[2.0.0,3.0.0)",
+ com.google.common.base;version="[17.0.0,20.0.0)",
+ com.google.common.cache;version="[17.0.0,20.0.0)",
+ com.google.common.util.concurrent;version="[17.0.0,20.0.0)",
+ javax.servlet.http;version="[2.6.0,4.0.0)",
+ javax.ws.rs.container;version="[2.0.0,3.0.0)",
+ javax.ws.rs.core;version="[2.0.0,3.0.0)",
+ javax.ws.rs.ext;version="[2.0.0,3.0.0)"
+Service-Component: OSGI-INF/SecurityHandler.xml,OSGI-INF/TokenAdminImpl.xml, OSGI-INF/TokenExceptionMapper.xml,
+ OSGI-INF/UserContextProvider.xml
+Export-Package: com.eclipsesource.connect.security;version="1.0.0"

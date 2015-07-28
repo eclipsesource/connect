@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="connect target" sequenceNumber="68">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="com.codeaffine.test.libraries.feature.feature.group" version="1.0.0.201502171553"/>
+<repository location="http://fappel.github.io/test-libraries/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="javax.mail.glassfish" version="1.4.1.v201108011116"/>
+<unit id="javax.activation" version="1.1.0.v201211130549"/>
+<unit id="javax.activation.source" version="1.1.0.v201211130549"/>
+<unit id="javax.mail.glassfish.source" version="1.4.1.v201108011116"/>
+<unit id="ch.qos.logback.classic" version="1.0.7.v20121108-1250"/>
+<unit id="ch.qos.logback.core" version="1.0.7.v20121108-1250"/>
+<unit id="org.slf4j.log4j.source" version="1.7.2.v20130115-1340"/>
+<unit id="ch.qos.logback.classic.source" version="1.0.7.v20121108-1250"/>
+<unit id="org.slf4j.api.source" version="1.7.2.v20121108-1250"/>
+<unit id="ch.qos.logback.slf4j" version="1.0.7.v20121108-1250"/>
+<unit id="org.slf4j.api" version="1.7.2.v20121108-1250"/>
+<unit id="ch.qos.logback.core.source" version="1.0.7.v20121108-1250"/>
+<unit id="org.slf4j.log4j" version="1.7.2.v20130115-1340"/>
+<unit id="ch.qos.logback.slf4j.source" version="1.0.7.v20121108-1250"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.equinox.serverside.sdk.feature.group" version="3.11.0.v20150529-1857"/>
+<unit id="org.eclipse.core.runtime.feature.feature.group" version="1.1.100.v20150529-1857"/>
+<unit id="org.eclipse.equinox.core.sdk.feature.group" version="3.11.0.v20150529-1857"/>
+<unit id="org.eclipse.equinox.compendium.sdk.feature.group" version="3.11.0.v20150430-1834"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.5"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="com.eclipsesource.jaxrs.provider.multipart.feature.source.feature.group" version="2.2.0.201506221200"/>
+<unit id="com.eclipsesource.jaxrs.connector.feature.source.feature.group" version="5.0.0.201506221200"/>
+<unit id="com.eclipsesource.jaxrs.connector.feature.feature.group" version="5.0.0.201506221200"/>
+<unit id="com.eclipsesource.jaxrs.provider.security.feature.source.feature.group" version="2.2.0.201506221200"/>
+<unit id="com.eclipsesource.jaxrs.provider.gson.feature.feature.group" version="2.3.0.201506221200"/>
+<unit id="com.eclipsesource.jaxrs.provider.gson.feature.source.feature.group" version="2.3.0.201506221200"/>
+<unit id="com.eclipsesource.jaxrs.provider.multipart.feature.feature.group" version="2.2.0.201506221200"/>
+<unit id="com.eclipsesource.jaxrs.provider.security.feature.feature.group" version="2.2.0.201506221200"/>
+<repository location="http://hstaudacher.github.io/osgi-jax-rs-connector/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="com.eclipsesource.osgi.additionals.feature.group" version="1.44.1.201507281401"/>
+<repository location="http://hstaudacher.github.io/osgi-additionals"/>
+</location>
+</locations>
+</target>

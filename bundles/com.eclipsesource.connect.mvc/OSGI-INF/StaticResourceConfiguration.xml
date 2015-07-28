@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="StaticResourceConfiguration">
+   <implementation class="com.eclipsesource.connect.mvc.internal.StaticResourceConfiguration"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.mvc.internal.StaticResourceConfiguration"/>
+      <provide interface="org.osgi.service.cm.ManagedService"/>
+   </service>
+   <property name="service.pid" type="String" value="com.eclipsesource.connect.static.resource.config"/>
+</scr:component>

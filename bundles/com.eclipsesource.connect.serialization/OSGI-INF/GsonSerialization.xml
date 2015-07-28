@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="GsonSerialization">
+   <implementation class="com.eclipsesource.connect.serialization.GsonSerialization"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.api.serialization.Serializer"/>
+      <provide interface="com.eclipsesource.connect.api.serialization.Deserializer"/>
+      <provide interface="org.osgi.service.cm.ManagedService"/>
+   </service>
+   <property name="service.pid" type="String" value="com.eclipsesource.connect.serialization"/>
+</scr:component>

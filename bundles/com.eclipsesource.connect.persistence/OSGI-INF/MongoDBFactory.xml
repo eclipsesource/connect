@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="MongoDBFactory">
+   <implementation class="com.eclipsesource.connect.persistence.MongoDBFactory"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.persistence.MongoDBFactory"/>
+      <provide interface="org.osgi.service.cm.ManagedService"/>
+   </service>
+   <property name="service.pid" type="String" value="com.eclipsesource.connect.persistence"/>
+</scr:component>
