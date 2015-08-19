@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: MongoDB Persistence Layer
 Bundle-SymbolicName: com.eclipsesource.connect.persistence
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: EclipseSource
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.eclipsesource.connect.api.persistence;version="[1.0.0,2.0.0)",
@@ -10,12 +10,13 @@ Import-Package: com.eclipsesource.connect.api.persistence;version="[1.0.0,2.0.0)
  com.google.common.base;version="[17.0.0,20.0.0)",
  com.google.common.collect;version="[17.0.0,20.0.0)",
  com.google.common.util.concurrent;version="[17.0.0,20.0.0)",
- com.mongodb;version="[2.12.2,3.0.0)",
- com.mongodb.util;version="[2.12.2,3.0.0)",
- org.bson;version="[2.12.2,3.0.0)",
- org.bson.types;version="[2.12.2,3.0.0)",
+ com.mongodb;version="[3.0.0,4.0.0)",
+ com.mongodb.client;version="[3.0.0,4.0.0)",
+ com.mongodb.util;version="[3.0.0,4.0.0)",
+ org.bson;version="[3.0.0,4.0.0)",
+ org.bson.types;version="[3.0.0,4.0.0)",
  org.osgi.service.cm;version="[1.2.0,2.0.0)"
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/MongoDBFactory.xml, OSGI-INF/MongoStorage.xml
-Export-Package: com.eclipsesource.connect.persistence;version="1.0.0",
- com.eclipsesource.connect.persistence.util;version="1.0.0"
+Export-Package: com.eclipsesource.connect.persistence;version="1.1.0",
+ com.eclipsesource.connect.persistence.util;version="1.1.0"

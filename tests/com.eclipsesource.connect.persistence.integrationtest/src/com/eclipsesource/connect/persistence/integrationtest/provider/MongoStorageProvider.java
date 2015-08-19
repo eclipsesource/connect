@@ -36,7 +36,7 @@ public class MongoStorageProvider implements StorageProvider {
 
   private Storage getStorage() throws ConfigurationException {
     MongoDBFactory dbFactory = getDbFactory();
-    dbFactory.getDB().dropDatabase();
+    dbFactory.getDB().drop();
     MongoStorage storage = new MongoStorage();
     GsonSerialization serialization = new GsonSerialization();
     serialization.updated( new Hashtable<>() );
@@ -48,7 +48,7 @@ public class MongoStorageProvider implements StorageProvider {
 
   private void clearStorage() throws ConfigurationException {
     MongoDBFactory dbFactory = getDbFactory();
-    dbFactory.getDB().dropDatabase();
+    dbFactory.getDB().drop();
   }
 
   private MongoDBFactory getDbFactory() throws ConfigurationException {

@@ -22,6 +22,7 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
+import org.bson.Document;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -32,16 +33,16 @@ import com.eclipsesource.connect.api.persistence.Query;
 import com.eclipsesource.connect.api.persistence.StorageObserver;
 import com.eclipsesource.connect.api.serialization.Deserializer;
 import com.eclipsesource.connect.api.serialization.Serializer;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
 
 
 public class MongoStorageTest {
 
   private MongoStorage mongoStorage;
-  private DBCollection collection;
+  private MongoCollection<Document> collection;
 
   @Before
   public void setUp() {
@@ -65,17 +66,19 @@ public class MongoStorageTest {
 
   private void createDBFactory() {
     MongoDBFactory factory = mock( MongoDBFactory.class );
-    DB db = mock( DB.class );
+    MongoDatabase db = mock( MongoDatabase.class );
     when( factory.getDB() ).thenReturn( db );
     collection = createCollection( db );
     when( db.getCollection( anyString() ) ).thenReturn( collection );
     mongoStorage.setDBFactory( factory );
   }
 
-  private DBCollection createCollection( DB db ) {
-    DBCollection collection = mock( DBCollection.class );
-    DBCursor cursor = mock( DBCursor.class );
-    when( collection.find( any( DBObject.class ) ) ).thenReturn( cursor );
+  @SuppressWarnings("unchecked")
+  private MongoCollection<Document> createCollection( MongoDatabase db ) {
+    MongoCollection<Document> collection = mock( MongoCollection.class );
+    FindIterable<Document> iterable = mock( FindIterable.class );
+    when( iterable.iterator() ).thenReturn( mock( MongoCursor.class ) );
+    when( collection.find( any( Document.class ) ) ).thenReturn( iterable );
     when( db.getCollection( anyString() ) ).thenReturn( collection );
     return collection;
   }
@@ -114,7 +117,7 @@ public class MongoStorageTest {
   public void testStoresObjectInCollection() {
     mongoStorage.store( "foo", new Object() );
 
-    verify( collection ).save( any( DBObject.class ) );
+    verify( collection ).insertOne( any( Document.class ) );
   }
 
   @Test
@@ -151,15 +154,15 @@ public class MongoStorageTest {
   public void testDeletesObjectsFromCollection() {
     mongoStorage.delete( "foo", new Object() );
 
-    verify( collection ).remove( any( DBObject.class ) );
+    verify( collection ).deleteOne( any( Document.class ) );
   }
 
   @Test
   public void testDeletesObjectsFromCollectionWithQuery() {
     mongoStorage.delete( new Query<>( "foo" ).where( "id", "bar" ) );
 
-    ArgumentCaptor<DBObject> captor = ArgumentCaptor.forClass( DBObject.class );
-    verify( collection ).remove( captor.capture() );
+    ArgumentCaptor<Document> captor = ArgumentCaptor.forClass( Document.class );
+    verify( collection ).deleteMany( captor.capture() );
     assertThat( captor.getValue().get( "id" ) ).isEqualTo( "bar" );
   }
 
@@ -182,7 +185,7 @@ public class MongoStorageTest {
   public void testUsesQueryToFindElements() {
     mongoStorage.findAll( new Query<>( "foo", Object.class ) );
 
-    ArgumentCaptor<DBObject> captor = ArgumentCaptor.forClass( DBObject.class );
+    ArgumentCaptor<Document> captor = ArgumentCaptor.forClass( Document.class );
     verify( collection ).find( captor.capture() );
   }
 
@@ -190,7 +193,7 @@ public class MongoStorageTest {
   public void testReturnsNullWhenNoResults() {
     Object object = mongoStorage.find( new Query<>( "foo", Object.class ) );
 
-    ArgumentCaptor<DBObject> captor = ArgumentCaptor.forClass( DBObject.class );
+    ArgumentCaptor<Document> captor = ArgumentCaptor.forClass( Document.class );
     verify( collection ).find( captor.capture() );
     assertThat( object ).isNull();
   }

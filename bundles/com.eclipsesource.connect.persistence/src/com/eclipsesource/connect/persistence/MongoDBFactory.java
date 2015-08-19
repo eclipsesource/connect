@@ -16,7 +16,7 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 
 import com.eclipsesource.connect.persistence.util.MongoDBClientFactory;
-import com.mongodb.DB;
+import com.mongodb.client.MongoDatabase;
 
 
 public class MongoDBFactory implements ManagedService {
@@ -26,7 +26,7 @@ public class MongoDBFactory implements ManagedService {
   static final String PROPERTY_DB_NAME = "db.name";
 
   private final MongoDBClientFactory clientFactory;
-  private DB db;
+  private MongoDatabase db;
 
   public MongoDBFactory() {
     this( new MongoDBClientFactory() );
@@ -57,7 +57,7 @@ public class MongoDBFactory implements ManagedService {
     }
   }
 
-  public DB getDB() {
+  public MongoDatabase getDB() {
     return db;
   }
 }

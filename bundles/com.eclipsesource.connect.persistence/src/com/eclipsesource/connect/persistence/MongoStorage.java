@@ -20,6 +20,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Stream;
 
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import com.eclipsesource.connect.api.persistence.Query;
@@ -30,12 +31,9 @@ import com.eclipsesource.connect.api.serialization.Deserializer;
 import com.eclipsesource.connect.api.serialization.Serializer;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
-import com.mongodb.util.JSON;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 
 public class MongoStorage implements Storage {
@@ -66,10 +64,10 @@ public class MongoStorage implements Storage {
   @Override
   public void store( String place, Object object, Object... objects ) {
     validateArguments( place, object );
-    DB db = factory.getDB();
-    DBCollection collection = db.getCollection( place );
-    List<DBObject> dbObjects = createDBObjects( object, objects );
-    dbObjects.forEach( dbObject -> collection.save( dbObject ) );
+    MongoDatabase db = factory.getDB();
+    MongoCollection<Document> collection = db.getCollection( place );
+    List<Document> documents = createDocuments( object, objects );
+    documents.forEach( document -> collection.insertOne( document ) );
     notifyObservers( place, object, objects );
   }
 
@@ -82,19 +80,19 @@ public class MongoStorage implements Storage {
   @Override
   public void delete( String place, Object object, Object... objects ) {
     validateArguments( place, object );
-    DB db = factory.getDB();
-    DBCollection collection = db.getCollection( place );
-    List<DBObject> dbObjects = createDBObjects( object, objects );
-    dbObjects.forEach( dbObject -> collection.remove( new BasicDBObject( KEY_ID, dbObject.get( KEY_ID ) ) ) );
+    MongoDatabase db = factory.getDB();
+    MongoCollection<Document> collection = db.getCollection( place );
+    List<Document> documents = createDocuments( object, objects );
+    documents.forEach( document -> collection.deleteOne( new Document( KEY_ID, document.get( KEY_ID ) ) ) );
   }
 
   @Override
   public void delete( Query<?> query ) {
     checkArgument( query != null, "Query must not be null" );
-    DB db = factory.getDB();
-    DBCollection collection = db.getCollection( query.getPlace() );
-    DBObject dbObject = createDBObject( query );
-    collection.remove( dbObject );
+    MongoDatabase db = factory.getDB();
+    MongoCollection<Document> collection = db.getCollection( query.getPlace() );
+    Document document = createDocument( query );
+    collection.deleteMany( document );
   }
 
   private void validateArguments( String place, Object object ) {
@@ -103,26 +101,26 @@ public class MongoStorage implements Storage {
     checkArgument( object != null, "Object must not be null" );
   }
 
-  private List<DBObject> createDBObjects( Object object, Object[] objects ) {
-    List<DBObject> result = new ArrayList<>();
-    addDbObject( result, object );
+  private List<Document> createDocuments( Object object, Object[] objects ) {
+    List<Document> result = new ArrayList<>();
+    addDocument( result, object );
     if( objects != null ) {
-      Stream.of( objects ).forEach( otherObject -> addDbObject( result, otherObject ) );
+      Stream.of( objects ).forEach( otherObject -> addDocument( result, otherObject ) );
     }
     return result;
   }
 
-  private void addDbObject( List<DBObject> result, Object object ) {
+  private void addDocument( List<Document> documents, Object object ) {
     String serializedObject = serializer.serialize( object );
-    DBObject dbObject = ( DBObject )JSON.parse( serializedObject );
-    ensureId( dbObject );
-    result.add( dbObject );
+    Document document = Document.parse( serializedObject );
+    ensureId( document );
+    documents.add( document );
   }
 
-  private void ensureId( DBObject dbObject ) {
-    Object id = dbObject.get( KEY_ID );
+  private void ensureId( Document document ) {
+    Object id = document.get( KEY_ID );
     if( id == null ) {
-      dbObject.put( KEY_ID, ObjectId.get().toString() );
+      document.put( KEY_ID, ObjectId.get().toString() );
     }
   }
 
@@ -150,15 +148,11 @@ public class MongoStorage implements Storage {
   @Override
   public <T> List<T> findAll( Query<T> query ) {
     checkArgument( query != null, "Query must not be null" );
-    DB db = factory.getDB();
-    DBCollection collection = db.getCollection( query.getPlace() );
+    MongoDatabase db = factory.getDB();
+    MongoCollection<Document> collection = db.getCollection( query.getPlace() );
     List<T> result = new ArrayList<>();
-    try( DBCursor cursor = collection.find( createDBObject( query ) ) ) {
-      prepareCursor( query, cursor );
-      while(cursor.hasNext()) {
-        DBObject next = cursor.next();
-        result.add( deserializer.deserialize( JSON.serialize( next ), query.getType() ) );
-      }
+    for( Document document : prepareIterable( query, collection.find( createDocument( query ) ) ) ) {
+      result.add( deserializer.deserialize( document.toJson(), query.getType() ) );
     }
     return result;
   }
@@ -166,36 +160,29 @@ public class MongoStorage implements Storage {
   @Override
   public long count( Query<?> query ) {
     checkArgument( query != null, "Query must not be null" );
-    DB db = factory.getDB();
-    DBCollection collection = db.getCollection( query.getPlace() );
-    try( DBCursor cursor = collection.find( createDBObject( query ) ) ) {
-      prepareCursor( query, cursor );
-      return cursor.count();
-    }
+    MongoDatabase db = factory.getDB();
+    MongoCollection<Document> collection = db.getCollection( query.getPlace() );
+    return collection.count( createDocument( query ) );
   }
 
-  private void prepareCursor( Query<?> query, DBCursor cursor ) {
+  private FindIterable<Document> prepareIterable( Query<?> query, FindIterable<Document> iterable ) {
     if( query.getLimit() != -1 ) {
-      cursor.limit( query.getLimit() );
+      iterable.limit( query.getLimit() );
     }
     if( query.getSortField() != null ) {
-      createSorting( query, cursor );
+      iterable.sort( new Document( query.getSortField(), query.getSortDirection() == SortDirection.ASC ? 1 : -1 ) );
     }
     if( query.getSkip() != Query.UNDEFINED ) {
-      cursor.skip( query.getSkip() );
+      iterable.skip( query.getSkip() );
     }
+    return iterable;
   }
 
-  private DBObject createDBObject( Query<?> query ) {
+  private Document createDocument( Query<?> query ) {
     Map<String, Object> conditions = query.getConditions();
-    BasicDBObject dbObject = new BasicDBObject();
-    conditions.entrySet().forEach( entry -> dbObject.append( entry.getKey(), entry.getValue() ) );
-    return dbObject;
-  }
-
-  private void createSorting( Query<?> query, DBCursor cursor ) {
-    BasicDBObject sortObject = new BasicDBObject( query.getSortField(), query.getSortDirection() == SortDirection.ASC ? 1 : -1 );
-    cursor.sort( sortObject );
+    Document document = new Document();
+    conditions.entrySet().forEach( entry -> document.append( entry.getKey(), entry.getValue() ) );
+    return document;
   }
 
   public void setDBFactory( MongoDBFactory factory ) {

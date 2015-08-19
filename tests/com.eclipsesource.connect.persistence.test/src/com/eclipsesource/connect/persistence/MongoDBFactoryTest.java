@@ -26,7 +26,7 @@ import org.junit.rules.ExpectedException;
 import org.osgi.service.cm.ConfigurationException;
 
 import com.eclipsesource.connect.persistence.util.MongoDBClientFactory;
-import com.mongodb.DB;
+import com.mongodb.client.MongoDatabase;
 
 
 public class MongoDBFactoryTest {
@@ -83,7 +83,7 @@ public class MongoDBFactoryTest {
 
   @Test
   public void testUsesClientFactoryToCreateDB() throws ConfigurationException {
-    DB db = mock( DB.class );
+    MongoDatabase db = mock( MongoDatabase.class );
     MongoDBFactory mongoDBFactory = createFactory( db );
 
     mongoDBFactory.updated( configuration );
@@ -93,14 +93,14 @@ public class MongoDBFactoryTest {
 
   @Test
   public void testUsesClientFactoryToCreateOnlyOneDB() throws ConfigurationException {
-    MongoDBFactory mongoDBFactory = createFactory( mock( DB.class ) );
+    MongoDBFactory mongoDBFactory = createFactory( mock( MongoDatabase.class ) );
 
     mongoDBFactory.updated( configuration );
 
     assertThat( mongoDBFactory.getDB() ).isSameAs( mongoDBFactory.getDB() ).isNotNull();
   }
 
-  private MongoDBFactory createFactory( DB db ) {
+  private MongoDBFactory createFactory( MongoDatabase db ) {
     MongoDBClientFactory clientFactory = mock( MongoDBClientFactory.class );
     when( clientFactory.createDB( anyString(), anyString(), anyInt() ) ).thenReturn( db );
     MongoDBFactory mongoDBFactory = new MongoDBFactory( clientFactory );
