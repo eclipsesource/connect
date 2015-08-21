@@ -69,7 +69,7 @@ public class TokenUtilTest {
 
   @Test
   public void testAttachesTokenCookieWithMaxAge() {
-    Response response = TokenUtil.attachToken( Response.status( 200 ), "foo" ).build();
+    Response response = TokenUtil.attachToken( Response.status( 200 ), "foo", TokenUtil.TEN_YEARS ).build();
 
     NewCookie tokenCookie = response.getCookies().get( "token" );
     assertThat( tokenCookie ).isNotNull();
@@ -80,7 +80,7 @@ public class TokenUtilTest {
 
   @Test
   public void testAttachesDeleteTokenCookieWithEmptyToken() {
-    Response response = TokenUtil.attachToken( Response.status( 200 ), Token.INVALIDATE_TOKEN ).build();
+    Response response = TokenUtil.attachToken( Response.status( 200 ), Token.INVALIDATE_TOKEN, 0 ).build();
 
     NewCookie tokenCookie = response.getCookies().get( "token" );
     assertThat( tokenCookie ).isNotNull();
@@ -91,7 +91,7 @@ public class TokenUtilTest {
 
   @Test
   public void testAttachesDeleteTokenCookieWithNullToken() {
-    Response response = TokenUtil.attachToken( Response.status( 200 ), null ).build();
+    Response response = TokenUtil.attachToken( Response.status( 200 ), null, 0 ).build();
 
     NewCookie tokenCookie = response.getCookies().get( "token" );
     assertThat( tokenCookie ).isNotNull();
