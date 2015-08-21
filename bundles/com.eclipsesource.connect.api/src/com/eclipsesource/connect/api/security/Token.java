@@ -13,6 +13,8 @@ package com.eclipsesource.connect.api.security;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
+import java.util.Date;
+
 
 public class Token {
 
@@ -20,11 +22,13 @@ public class Token {
 
   private final String userId;
   private final String token;
+  private final Date createdAt;
 
   public Token( String userId, String token ) {
     validateArguments( userId, token );
     this.userId = userId;
     this.token = token;
+    this.createdAt = new Date();
   }
 
   private void validateArguments( String userId, String token ) {
@@ -42,10 +46,15 @@ public class Token {
     return token;
   }
 
+  public Date getCreatedAt() {
+    return new Date( createdAt.getTime() );
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
+    result = prime * result + ( ( createdAt == null ) ? 0 : createdAt.hashCode() );
     result = prime * result + ( ( token == null ) ? 0 : token.hashCode() );
     result = prime * result + ( ( userId == null ) ? 0 : userId.hashCode() );
     return result;
@@ -63,6 +72,13 @@ public class Token {
       return false;
     }
     Token other = ( Token )obj;
+    if( createdAt == null ) {
+      if( other.createdAt != null ) {
+        return false;
+      }
+    } else if( !createdAt.equals( other.createdAt ) ) {
+      return false;
+    }
     if( token == null ) {
       if( other.token != null ) {
         return false;

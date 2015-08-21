@@ -22,7 +22,7 @@ import com.eclipsesource.connect.api.security.Token;
 
 public class TokenUtil {
 
-  static final int TEN_YEARS = 60 * 60 * 24 * 365 * 10;
+  public static final int TEN_YEARS = 60 * 60 * 24 * 365 * 10;
 
   private static final String TOKEN_NAME = "token";
 
@@ -40,11 +40,19 @@ public class TokenUtil {
     return token;
   }
 
+  /**
+   * @deprecated use {@link TokenUtil#attachToken(ResponseBuilder, String, int)}
+   */
+  @Deprecated
   public static ResponseBuilder attachToken( ResponseBuilder builder, String token ) {
+    return attachToken( builder, token, TEN_YEARS );
+  }
+
+  public static ResponseBuilder attachToken( ResponseBuilder builder, String token, int maxAge ) {
     if( token == null || token.isEmpty() ) {
       return builder.cookie( new NewCookie( TOKEN_NAME, Token.INVALIDATE_TOKEN, "/", null, null, 0, false ) );
     }
-    return builder.cookie( new NewCookie( TOKEN_NAME, token, "/", null, null, TEN_YEARS, false ) );
+    return builder.cookie( new NewCookie( TOKEN_NAME, token, "/", null, null, maxAge, false ) );
   }
 
   private TokenUtil() {

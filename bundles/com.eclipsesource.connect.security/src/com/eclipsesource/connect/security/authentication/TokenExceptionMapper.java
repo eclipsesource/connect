@@ -43,6 +43,6 @@ public class TokenExceptionMapper implements ExceptionMapper<TokenException> {
       return Response.status( 401 ).type( MediaType.APPLICATION_JSON_TYPE ).entity( error( "Token not valid" ) ).build();
     }
     URI uri = UriBuilder.fromUri( uriInfo.getBaseUri() ).build();
-    return TokenUtil.attachToken( Response.seeOther( uri ), Token.INVALIDATE_TOKEN ).build();
+    return TokenUtil.attachToken( Response.seeOther( uri ), Token.INVALIDATE_TOKEN, -1 ).build();
   }
 }
