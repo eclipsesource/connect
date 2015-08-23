@@ -48,6 +48,19 @@ public class ReadWriteTest extends PersistenceTest {
   }
 
   @Test
+  public void testUpdatesObject() {
+    TestTypeWithId object = new TestTypeWithId( "foo" );
+  
+    getStorage().store( "foo-store", object );
+    object.setName( "bar" );
+    getStorage().store( "foo-store", object );
+  
+    List<TestTypeWithId> all = getStorage().findAll( new Query<>( "foo-store", TestTypeWithId.class ) );
+    assertThat( all ).hasSize( 1 );
+    assertThat( all.get( 0 ).getName() ).isEqualTo( "bar" );
+  }
+
+  @Test
   public void testCountsObjects() {
     for( int i = 0; i < 5; i++ ) {
       getStorage().store( "foo-count", new TestTypeWithId( "bar" + 1 ) );

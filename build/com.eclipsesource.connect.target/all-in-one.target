@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="connect target" sequenceNumber="71">
+<?pde version="3.8"?><target name="connect target" sequenceNumber="72">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="javax.mail.glassfish" version="1.4.1.v201108011116"/>
@@ -41,7 +41,7 @@
 <repository location="http://fappel.github.io/test-libraries/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="com.eclipsesource.osgi.additionals.feature.group" version="1.46.0.201508191555"/>
+<unit id="com.eclipsesource.osgi.additionals.feature.group" version="1.47.0.201508211621"/>
 <repository location="http://hstaudacher.github.io/osgi-additionals"/>
 </location>
 </locations>

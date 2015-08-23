@@ -37,6 +37,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.UpdateOptions;
 
 
 public class MongoStorageTest {
@@ -117,7 +118,7 @@ public class MongoStorageTest {
   public void testStoresObjectInCollection() {
     mongoStorage.store( "foo", new Object() );
 
-    verify( collection ).insertOne( any( Document.class ) );
+    verify( collection ).updateOne( any( Document.class ), any( Document.class ), any( UpdateOptions.class ) );
   }
 
   @Test

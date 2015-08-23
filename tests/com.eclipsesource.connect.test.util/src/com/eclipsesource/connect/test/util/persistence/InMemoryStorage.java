@@ -11,6 +11,7 @@
 package com.eclipsesource.connect.test.util.persistence;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.mongodb.client.model.Filters.eq;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -30,11 +31,13 @@ import com.github.fakemongo.Fongo;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.UpdateOptions;
 
 
 public class InMemoryStorage implements Storage {
 
   private static final String KEY_ID = "_id";
+  private static final UpdateOptions UPDATE_OPTIONS = new UpdateOptions().upsert( true );
 
   private MongoDatabase db;
   private GsonSerialization serialization;
@@ -63,7 +66,9 @@ public class InMemoryStorage implements Storage {
     validateArguments( place, object );
     MongoCollection<Document> collection = db.getCollection( place );
     List<Document> documents = createDocuments( object, objects );
-    documents.forEach( document -> collection.insertOne( document ) );
+    documents.forEach( document -> {
+      collection.updateOne( eq( KEY_ID, document.get( KEY_ID ) ), new Document( "$set", document ), UPDATE_OPTIONS );
+    } );
   }
 
   @Override

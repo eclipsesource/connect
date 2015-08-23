@@ -23,6 +23,10 @@ public class TestType {
     return name;
   }
 
+  public void setName( String name ) {
+    this.name = name;
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;

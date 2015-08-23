@@ -11,6 +11,7 @@
 package com.eclipsesource.connect.persistence;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.mongodb.client.model.Filters.eq;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,11 +35,13 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.UpdateOptions;
 
 
 public class MongoStorage implements Storage {
 
   private static final String KEY_ID = "_id";
+  private static final UpdateOptions UPDATE_OPTIONS = new UpdateOptions().upsert( true );
 
   private final List<StorageObserver> observers;
   private final ExecutorService executor;
@@ -67,7 +70,9 @@ public class MongoStorage implements Storage {
     MongoDatabase db = factory.getDB();
     MongoCollection<Document> collection = db.getCollection( place );
     List<Document> documents = createDocuments( object, objects );
-    documents.forEach( document -> collection.insertOne( document ) );
+    documents.forEach( document -> {
+      collection.updateOne( eq( KEY_ID, document.get( KEY_ID ) ), new Document( "$set", document ), UPDATE_OPTIONS );
+    } );
     notifyObservers( place, object, objects );
   }
 
