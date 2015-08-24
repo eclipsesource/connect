@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="Tabris Connect" uid="com.eclipsesource.tabris.connect.product" version="1.0.0" useFeatures="true" includeLaunchers="false">
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgs>-Djava.awt.headless=true
+-Declipse.ignoreApp=true 
+-Dosgi.noShutdown=true
+-Declipse.log.level=WARNING
+-Dorg.eclipse.equinox.http.jetty.log.stderr.threshold=info
+-Dfelix.fileinstall.dir=&quot;./etc&quot;
+-Dfelix.fileinstall.noInitialDelay=true
+-Dfelix.fileinstall.poll=1000
+-Dlogback.configurationFile=&quot;./etc/logback.xml&quot;
+-Dorg.osgi.service.http.port.secure=9090
+-Dorg.eclipse.equinox.http.jetty.http.enabled=false
+-Dorg.eclipse.equinox.http.jetty.https.enabled=true 
+-Dorg.eclipse.equinox.http.jetty.ssl.keystore=&quot;./etc/keystore.jks&quot;
+-Dorg.eclipse.equinox.http.jetty.ssl.keypassword=543bc4113004ccf17c2c0a3c
+-Dorg.eclipse.equinox.http.jetty.ssl.password=543bc4113004ccf17c2c0a3c
+      </vmArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <launcher>
+      <solaris/>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="com.eclipsesource.tabris.connect.runtime"/>
+      <feature id="com.eclipsesource.tabris.connect.platform"/>
+      <feature id="com.eclipsesource.tabris.connect.backend"/>
+      <feature id="com.eclipsesource.tabris.connect.frontend"/>
+   </features>
+
+   <configurations>
+      <plugin id="com.eclipsesource.jaxrs.provider.multipart" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.jaxrs.provider.security" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.jaxrs.publisher" autoStart="true" startLevel="3" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.admin" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.api" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.app.api" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.apps" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.build" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.build.branding" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.build.travisci" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.documentation" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.downloads" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.grand.central" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.invitation" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.invoice" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.payment" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.scratchpad" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.security.github" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.settings" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.backend.stackoverflow" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.admin" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.apps" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.base" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.build" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.documentation" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.downloads" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.grand.central" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.invitation" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.payment" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.samples" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.scratchpad" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.frontend.settings" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.platform.inject" autoStart="true" startLevel="1" />
+      <plugin id="com.eclipsesource.tabris.connect.platform.mail" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.platform.markdown" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.platform.model" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.platform.mvc" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.platform.persistence" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.platform.search" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.platform.security" autoStart="true" startLevel="0" />
+      <plugin id="com.eclipsesource.tabris.connect.platform.serialization" autoStart="true" startLevel="1" />
+      <plugin id="org.apache.felix.configadmin" autoStart="true" startLevel="1" />
+      <plugin id="org.apache.felix.fileinstall" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.http.jetty" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+      <plugin id="org.eclipse.osgi.services" autoStart="true" startLevel="0" />
+   </configurations>
+
+</product>

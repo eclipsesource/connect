@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="MarkdownUI">
+   <implementation class="com.eclipsesource.connect.example.markdown.MarkdownUI"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.example.markdown.MarkdownUI"/>
+   </service>
+   <reference bind="setMarkdownParser" cardinality="1..1" interface="com.eclipsesource.connect.api.markdown.MarkdownParser" name="MarkdownParser" policy="static" unbind="unsetMarkdownParser"/>
+</scr:component>

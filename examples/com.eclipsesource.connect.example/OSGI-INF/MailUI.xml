@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="MailUI">
+   <implementation class="com.eclipsesource.connect.example.mail.MailUI"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.example.mail.MailUI"/>
+   </service>
+   <reference bind="setSendMail" cardinality="1..1" interface="com.eclipsesource.connect.api.mail.SendMail" name="SendMail" policy="static" unbind="unsetSendMail"/>
+</scr:component>

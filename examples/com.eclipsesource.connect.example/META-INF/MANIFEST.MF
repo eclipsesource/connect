@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Connect Example
+Bundle-SymbolicName: com.eclipsesource.connect.example
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EclipseSource
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.eclipsesource.connect.api.asset;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.html;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.inject;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.mail;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.markdown;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.persistence;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.search;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.security;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.serialization;version="[1.0.0,2.0.0)",
+ com.eclipsesource.connect.api.util;version="[1.0.0,2.0.0)",
+ javax.annotation.security;version="[1.2.0,2.0.0)",
+ javax.ws.rs;version="[2.0.0,3.0.0)",
+ javax.ws.rs.core;version="[2.0.0,3.0.0)",
+ javax.ws.rs.ext;version="[2.0.0,3.0.0)",
+ org.glassfish.jersey.server.mvc;version="[2.18.0,3.0.0)"
+Service-Component: OSGI-INF/*.xml
+Assets: /assets

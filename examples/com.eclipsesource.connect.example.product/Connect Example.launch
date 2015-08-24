@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.pde.ui.EquinoxLauncher">
+<booleanAttribute key="append.args" value="true"/>
+<booleanAttribute key="automaticAdd" value="false"/>
+<booleanAttribute key="automaticValidate" value="true"/>
+<stringAttribute key="bootstrap" value=""/>
+<stringAttribute key="checked" value="[NONE]"/>
+<booleanAttribute key="clearConfig" value="false"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/Connect Example"/>
+<booleanAttribute key="default" value="true"/>
+<booleanAttribute key="default_auto_start" value="true"/>
+<intAttribute key="default_start_level" value="4"/>
+<booleanAttribute key="includeOptional" value="false"/>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog -console"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Declipse.ignoreApp=true &#10;-Dosgi.noShutdown=true&#10;-Declipse.log.level=WARNING&#10;-Dorg.eclipse.equinox.http.jetty.log.stderr.threshold=info&#10;-Dfelix.fileinstall.dir=&quot;${project_loc:com.eclipsesource.connect.example.configuration}/development&quot;&#13;&#10;-Dfelix.fileinstall.noInitialDelay=true&#13;&#10;-Dfelix.fileinstall.poll=1000&#10;-Dlogback.configurationFile=&quot;${project_loc:com.eclipsesource.connect.example.configuration}/development/logback.xml&quot;&#10;-Djava.awt.headless=true&#10;-Dorg.osgi.service.http.port.secure=9090&#10;-Dorg.osgi.service.http.port=9091&#10;-Dorg.eclipse.equinox.http.jetty.http.enabled=true&#10;-Dorg.eclipse.equinox.http.jetty.https.enabled=true &#10;-Dorg.eclipse.equinox.http.jetty.ssl.keystore=&quot;${project_loc:com.eclipsesource.connect.example.configuration}/development/keystore.jks&quot;&#10;-Dorg.eclipse.equinox.http.jetty.ssl.keypassword=543bc4113004ccf17c2c0a3c&#10;-Dorg.eclipse.equinox.http.jetty.ssl.password=543bc4113004ccf17c2c0a3c&#10;-Duser.timezone=Europe/Berlin"/>
+<stringAttribute key="pde.version" value="3.3"/>
+<booleanAttribute key="show_selected_only" value="true"/>
+<stringAttribute key="target_bundles" value="ch.qos.logback.classic@default:default,ch.qos.logback.core@default:default,ch.qos.logback.slf4j@default:false,com.eclipsesource.jaxrs.jersey-all@default:default,com.eclipsesource.jaxrs.provider.multipart@default:default,com.eclipsesource.jaxrs.provider.security@default:default,com.eclipsesource.jaxrs.publisher@default:default,com.github.spullara.mustache.java.compiler@default:default,com.google.gson@default:default,com.google.guava@default:default,javax.activation@default:default,javax.mail.glassfish@default:default,javax.servlet@default:default,lucene-analyzers-common@default:default,lucene-core@default:default,org.apache.felix.configadmin@1:default,org.apache.felix.fileinstall@1:default,org.apache.felix.gogo.command@default:default,org.apache.felix.gogo.runtime@default:default,org.apache.felix.gogo.shell@default:default,org.eclipse.equinox.console@default:default,org.eclipse.equinox.ds@1:true,org.eclipse.equinox.http.jetty@default:true,org.eclipse.equinox.http.servlet@default:default,org.eclipse.equinox.util@default:default,org.eclipse.jetty.continuation@default:default,org.eclipse.jetty.http@default:default,org.eclipse.jetty.io@default:default,org.eclipse.jetty.security@default:default,org.eclipse.jetty.server@default:default,org.eclipse.jetty.servlet@default:default,org.eclipse.jetty.util@default:default,org.eclipse.osgi.services@default:default,org.eclipse.osgi@-1:true,org.slf4j.api@default:default,yuicompressor@default:default"/>
+<booleanAttribute key="tracing" value="false"/>
+<booleanAttribute key="useCustomFeatures" value="false"/>
+<booleanAttribute key="useDefaultConfigArea" value="true"/>
+<stringAttribute key="workspace_bundles" value="com.eclipsesource.connect.api@3:default,com.eclipsesource.connect.connector.github@3:default,com.eclipsesource.connect.example@default:default,com.eclipsesource.connect.inject@3:default,com.eclipsesource.connect.mail@3:default,com.eclipsesource.connect.markdown@3:default,com.eclipsesource.connect.model@3:default,com.eclipsesource.connect.mvc@3:default,com.eclipsesource.connect.search@3:default,com.eclipsesource.connect.security@3:default,com.eclipsesource.connect.serialization@3:default"/>
+</launchConfiguration>

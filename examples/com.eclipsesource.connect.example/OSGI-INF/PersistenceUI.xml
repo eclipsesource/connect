@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="PersistenceUI">
+   <implementation class="com.eclipsesource.connect.example.persistence.PersistenceUI"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.example.persistence.PersistenceUI"/>
+   </service>
+   <reference bind="setStorage" cardinality="1..1" interface="com.eclipsesource.connect.api.persistence.Storage" name="Storage" policy="static" unbind="unsetStorage"/>
+</scr:component>

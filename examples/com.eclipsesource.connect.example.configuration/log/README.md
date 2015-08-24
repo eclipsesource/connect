@@ -1,0 +1,1 @@
+This folder contains the application log and will be copied during the build

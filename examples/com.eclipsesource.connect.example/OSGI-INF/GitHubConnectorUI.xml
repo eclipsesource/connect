@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="GitHubConnectorUI">
+   <implementation class="com.eclipsesource.connect.example.connector.GitHubConnectorUI"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.example.connector.GitHubConnectorUI"/>
+   </service>
+</scr:component>
