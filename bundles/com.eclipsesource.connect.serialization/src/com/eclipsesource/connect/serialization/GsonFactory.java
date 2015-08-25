@@ -12,6 +12,7 @@ package com.eclipsesource.connect.serialization;
 
 import com.eclipsesource.connect.api.serialization.Name;
 import com.eclipsesource.connect.model.Id;
+import com.fatboyindustrial.gsonjavatime.Converters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -26,6 +27,7 @@ public class GsonFactory {
       builder.setPrettyPrinting();
     }
     builder.registerTypeAdapter( Id.class, new IdTypeAdapter() );
+    Converters.registerAll( builder );
     addFieldNamingStrategy( builder );
     return builder.create();
   }

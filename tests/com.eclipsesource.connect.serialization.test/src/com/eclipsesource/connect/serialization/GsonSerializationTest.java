@@ -12,6 +12,7 @@ package com.eclipsesource.connect.serialization;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.ZonedDateTime;
 import java.util.Hashtable;
 
 import org.junit.Before;
@@ -60,6 +61,16 @@ public class GsonSerializationTest {
 
     assertThat( serializedObject ).contains( "foobar" );
     assertThat( serialization.deserialize( serializedObject, TestType.class ).getBar() ).isEqualTo( "bar" );
+  }
+
+  @Test
+  public void testCanSerializeJava8Dates() {
+    ZonedDateTime date = ZonedDateTime.now();
+
+    String json = serialization.serialize( date );
+    ZonedDateTime actualDate = serialization.deserialize( json, ZonedDateTime.class );
+
+    assertThat( actualDate ).isEqualTo( date );
   }
 
   private static class TestType {
