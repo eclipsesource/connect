@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="connect target" sequenceNumber="73">
+<?pde version="3.8"?><target name="connect target" sequenceNumber="74">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="javax.mail.glassfish" version="1.4.1.v201108011116"/>
@@ -26,23 +26,23 @@
 <repository location="http://download.eclipse.org/eclipse/updates/4.5"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="com.eclipsesource.jaxrs.provider.multipart.feature.source.feature.group" version="2.2.0.201506221200"/>
-<unit id="com.eclipsesource.jaxrs.connector.feature.source.feature.group" version="5.0.0.201506221200"/>
-<unit id="com.eclipsesource.jaxrs.connector.feature.feature.group" version="5.0.0.201506221200"/>
-<unit id="com.eclipsesource.jaxrs.provider.security.feature.source.feature.group" version="2.2.0.201506221200"/>
-<unit id="com.eclipsesource.jaxrs.provider.gson.feature.feature.group" version="2.3.0.201506221200"/>
-<unit id="com.eclipsesource.jaxrs.provider.gson.feature.source.feature.group" version="2.3.0.201506221200"/>
-<unit id="com.eclipsesource.jaxrs.provider.multipart.feature.feature.group" version="2.2.0.201506221200"/>
-<unit id="com.eclipsesource.jaxrs.provider.security.feature.feature.group" version="2.2.0.201506221200"/>
-<repository location="http://hstaudacher.github.io/osgi-jax-rs-connector/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="com.codeaffine.test.libraries.feature.feature.group" version="1.0.0.201508012258"/>
 <repository location="http://fappel.github.io/test-libraries/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="com.eclipsesource.osgi.additionals.feature.group" version="1.48.0.201508251625"/>
 <repository location="http://hstaudacher.github.io/osgi-additionals"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="com.eclipsesource.jaxrs.provider.gson.feature.feature.group" version="2.3.0.201510030920"/>
+<unit id="com.eclipsesource.jaxrs.provider.multipart.feature.source.feature.group" version="2.2.0.201510030920"/>
+<unit id="com.eclipsesource.jaxrs.connector.feature.feature.group" version="5.1.0.201510030920"/>
+<unit id="com.eclipsesource.jaxrs.provider.security.feature.source.feature.group" version="2.2.0.201510030920"/>
+<unit id="com.eclipsesource.jaxrs.connector.feature.source.feature.group" version="5.1.0.201510030920"/>
+<unit id="com.eclipsesource.jaxrs.provider.gson.feature.source.feature.group" version="2.3.0.201510030920"/>
+<unit id="com.eclipsesource.jaxrs.provider.multipart.feature.feature.group" version="2.2.0.201510030920"/>
+<unit id="com.eclipsesource.jaxrs.provider.security.feature.feature.group" version="2.2.0.201510030920"/>
+<repository location="http://hstaudacher.github.io/osgi-jax-rs-connector/"/>
 </location>
 </locations>
 </target>
