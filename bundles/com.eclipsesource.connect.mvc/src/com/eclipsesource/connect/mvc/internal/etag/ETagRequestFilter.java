@@ -31,6 +31,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
 import com.eclipsesource.connect.api.asset.ETag;
+import com.eclipsesource.connect.mvc.internal.StaticResourceConfiguration;
 import com.google.common.base.Strings;
 
 
@@ -46,16 +47,21 @@ public class ETagRequestFilter implements ContainerRequestFilter {
 
   private ETagCache eTagCache;
 
+  private StaticResourceConfiguration configuration;
+
   @Context
   ResourceInfo resourceInfo;
 
   @Override
   public void filter( ContainerRequestContext requestContext ) throws IOException {
     checkState( eTagCache != null, "ETagCache not set" );
-    checkState( resourceInfo != null, "ResourceInfo not set" );
+    checkState( configuration != null, "ETagCache not set" );
+    checkState( resourceInfo != null, "StaticResourceConfiguration not set" );
     checkArgument( requestContext != null, "ContainerRequestContext must not be null" );
-    if( resourceInfo.getResourceMethod().getAnnotation( ETag.class ) != null ) {
-      processETag( requestContext );
+    if( configuration.useCache() ) {
+      if( resourceInfo.getResourceMethod().getAnnotation( ETag.class ) != null ) {
+        processETag( requestContext );
+      }
     }
   }
 
@@ -112,6 +118,15 @@ public class ETagRequestFilter implements ContainerRequestFilter {
 
   void unsetETagCache( ETagCache eTagCache ) {
     this.eTagCache = null;
+  }
+
+  void setStaticResourceConfiguration( StaticResourceConfiguration configuration ) {
+    checkArgument( configuration != null, "Configuration must not be null" );
+    this.configuration = configuration;
+  }
+
+  void unsetStaticResourceConfiguration( StaticResourceConfiguration configuration ) {
+    this.configuration = configuration;
   }
 
 }

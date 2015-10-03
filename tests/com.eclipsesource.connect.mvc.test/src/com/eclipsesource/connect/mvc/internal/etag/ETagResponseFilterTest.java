@@ -15,6 +15,7 @@ import static com.eclipsesource.connect.mvc.internal.etag.ETagTestUtil.createRes
 import static com.eclipsesource.connect.mvc.internal.etag.ETagTestUtil.createResponseContext;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
@@ -24,6 +25,8 @@ import javax.ws.rs.core.Response.Status;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.eclipsesource.connect.mvc.internal.StaticResourceConfiguration;
 
 
 public class ETagResponseFilterTest {
@@ -36,12 +39,23 @@ public class ETagResponseFilterTest {
     filter = new ETagResponseFilter();
     eTagCache = new ETagCache();
     filter.setETagCache( eTagCache );
+    StaticResourceConfiguration configuration = mock( StaticResourceConfiguration.class );
+    when( configuration.useCache() ).thenReturn( true );
+    filter.setStaticResourceConfiguration( configuration );
   }
 
   @Test( expected = IllegalStateException.class )
   public void testFailsWithoutETagCache() throws IOException {
     filter.resourceInfo = createResourceInfo( CacheableResource.class, "get" );
     filter.unsetETagCache( null );
+
+    filter.filter( mock( ContainerRequestContext.class ), mock( ContainerResponseContext.class ) );
+  }
+
+  @Test( expected = IllegalStateException.class )
+  public void testFailsWithoutStaticResourceCOnfig() throws IOException {
+    filter.resourceInfo = createResourceInfo( CacheableResource.class, "get" );
+    filter.unsetStaticResourceConfiguration( null );
 
     filter.filter( mock( ContainerRequestContext.class ), mock( ContainerResponseContext.class ) );
   }
@@ -54,6 +68,11 @@ public class ETagResponseFilterTest {
   @Test( expected = IllegalArgumentException.class )
   public void testFailsToSetNullETagCache() throws IOException {
     filter.setETagCache( null );
+  }
+
+  @Test( expected = IllegalArgumentException.class )
+  public void testFailsToSetNullStaticResourceConfig() throws IOException {
+    filter.setStaticResourceConfiguration( null );
   }
 
   @Test( expected = IllegalArgumentException.class )

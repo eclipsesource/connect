@@ -17,6 +17,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
@@ -27,6 +28,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
+import com.eclipsesource.connect.mvc.internal.StaticResourceConfiguration;
 import com.google.common.collect.Lists;
 
 
@@ -40,6 +42,9 @@ public class ETagRequestFilterTest {
     filter = new ETagRequestFilter();
     eTagCache = new ETagCache();
     filter.setETagCache( eTagCache );
+    StaticResourceConfiguration configuration = mock( StaticResourceConfiguration.class );
+    when( configuration.useCache() ).thenReturn( true );
+    filter.setStaticResourceConfiguration( configuration );
   }
 
   @Test( expected = IllegalStateException.class )
@@ -55,9 +60,21 @@ public class ETagRequestFilterTest {
     filter.filter( mock( ContainerRequestContext.class ) );
   }
 
+  @Test( expected = IllegalStateException.class )
+  public void testFailsWithoutStaticResourceConfig() throws IOException {
+    filter.unsetStaticResourceConfiguration( null );
+
+    filter.filter( mock( ContainerRequestContext.class ) );
+  }
+
   @Test( expected = IllegalArgumentException.class )
   public void testFailsToSetNullETagCache() throws IOException {
     filter.setETagCache( null );
+  }
+
+  @Test( expected = IllegalArgumentException.class )
+  public void testFailsToSetNullStaticResourceConfig() throws IOException {
+    filter.setStaticResourceConfiguration( null );
   }
 
   @Test( expected = IllegalArgumentException.class )

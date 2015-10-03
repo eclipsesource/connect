@@ -31,6 +31,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
 import com.eclipsesource.connect.api.asset.ETag;
+import com.eclipsesource.connect.mvc.internal.StaticResourceConfiguration;
 
 
 /**
@@ -43,19 +44,24 @@ public class ETagResponseFilter implements ContainerResponseFilter {
 
   private ETagCache eTagCache;
 
+  private StaticResourceConfiguration configuration;
+
   @Context
   ResourceInfo resourceInfo;
 
   @Override
   public void filter( ContainerRequestContext requestContext, ContainerResponseContext responseContext ) throws IOException {
     checkState( eTagCache != null, "ETagCache not set" );
+    checkState( configuration != null, "StaticResourceConfiguration not set" );
     checkState( resourceInfo != null, "ResourceInfo not set" );
     checkArgument( requestContext != null, "ContainerRequestContext must not be null" );
     checkArgument( responseContext != null, "ContainerResponseContext must not be null" );
-    Method resourceMethod = resourceInfo.getResourceMethod();
-    if( resourceMethod != null && resourceMethod.getAnnotation( ETag.class ) != null ) {
-      if( responseContext.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL ) {
-        processETag( requestContext, responseContext );
+    if( configuration.useCache() ) {
+      Method resourceMethod = resourceInfo.getResourceMethod();
+      if( resourceMethod != null && resourceMethod.getAnnotation( ETag.class ) != null ) {
+        if( responseContext.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL ) {
+          processETag( requestContext, responseContext );
+        }
       }
     }
   }
@@ -107,6 +113,15 @@ public class ETagResponseFilter implements ContainerResponseFilter {
 
   void unsetETagCache( ETagCache eTagCache ) {
     this.eTagCache = null;
+  }
+
+  void setStaticResourceConfiguration( StaticResourceConfiguration configuration ) {
+    checkArgument( configuration != null, "Configuration must not be null" );
+    this.configuration = configuration;
+  }
+
+  void unsetStaticResourceConfiguration( StaticResourceConfiguration configuration ) {
+    this.configuration = configuration;
   }
 
 }

@@ -5,4 +5,5 @@
       <provide interface="com.eclipsesource.connect.mvc.internal.etag.ETagRequestFilter"/>
    </service>
    <reference bind="setETagCache" cardinality="1..1" interface="com.eclipsesource.connect.mvc.internal.etag.ETagCache" name="ETagCache" policy="static" unbind="unsetETagCache"/>
+   <reference bind="setStaticResourceConfiguration" cardinality="1..1" interface="com.eclipsesource.connect.mvc.internal.StaticResourceConfiguration" name="StaticResourceConfiguration" policy="static" unbind="unsetStaticResourceConfiguration"/>
 </scr:component>
