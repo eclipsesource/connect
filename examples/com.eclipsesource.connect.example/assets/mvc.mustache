@@ -9,7 +9,8 @@
       <div class="page-header">
         <h1 class="navbar">Templates</h1>
       </div>
-      Connect makes use of <a href="https://jersey.java.net/documentation/latest/mvc.html">Jerseys MVC feature</a>. UI parts can be contributed as OSGi services. A sample service looks like this:
+      Connect makes use of <a href="https://jersey.java.net/documentation/latest/mvc.html">Jerseys MVC feature</a>. 
+      UI parts can be contributed as OSGi services. A sample service looks like this:
         <div class="bs-component">
            <pre><code class="java">
 @Path( "/mvc" )
@@ -25,7 +26,11 @@ public class MvcUI {
 }
            </code></pre>
         </div>
-      The snippets actually shows the code of this page. Please note the @Template and @ErrorTemplate annotations. They are defined in Jerseys MVC features. What connect does is to bind a <a href="https://mustache.github.io/">mustache</a> based template engine. The engine used is <a href="https://github.com/spullara/mustache.java">spullara java implementation</a>. As a result in your services methods you can return Pojos and access the values using common mustache syntax. 
+      The snippets actually shows the code of this page. Please note the <code>@Template</code> and <code>@ErrorTemplate</code> 
+      annotations. They are defined in Jerseys MVC features. What connect does is to bind a
+      <a href="https://mustache.github.io/">mustache</a> based template engine. The engine used is 
+      <a href="https://github.com/spullara/mustache.java">spullara java implementation</a>. As a result in your 
+      services methods you can return pojos and access the values using common mustache syntax. 
     </div>
   </div>
   
@@ -34,13 +39,18 @@ public class MvcUI {
       <div class="page-header">
         <h1 class="navbar">Static Resources</h1>
       </div>
-      Besides dynamic UI parts static resources like images and scripts are needed to create an HTML based UI. You can register folders that contain static resources in your bundles manifest. The head is called Assets and can be a comma separated list of pathes relative to the bundle root.
+      Besides dynamic UI parts static resources like images and scripts are needed to create an HTML based UI. You can 
+      register folders that contain static resources in your bundles manifest. The head is called Assets and can be a 
+      comma separated list of pathes relative to the bundle root.
         <div class="bs-component">
            <pre><code class="java">
 Assets: /assets1, /assets2
            </code></pre>
         </div>
-      As an example imagine a bundle that contains a file called image.png in the folder assets1. Adding the manifest header like in the example would make all files in that folder available via HTTP. Our image.png would be available at http://server:port/assets/image.png. Please note the "assets" in the path. This is a hard coded path segment you have no influence on.
+      As an example imagine a bundle that contains a file called <code>image.png</code> in the folder <code>assets1</code>. 
+      Adding the manifest header like in the example would make all files in that folder available via HTTP. Our 
+      <code>image.png</code> would be available at <code>http://server:port/assets/image.png</code>. Please note the 
+      <code>assets</code> in the path. This is a hard coded path segment you have no influence on.
     </div>
   </div>
   
@@ -50,14 +60,19 @@ Assets: /assets1, /assets2
       <div class="page-header">
         <h1 class="navbar">Caching</h1>
       </div>
-      Static resources can be cached and compressed. During development mode this is not recommended because modifications require a server restart. In production mode this is wanted. Anyway, you can configure this using the OSGi configuration admin. The service pid is 'com.eclipsesource.connect.static.resource.config'. The properties of this configurations are:
+      Static resources can be cached and compressed. During development mode this is not recommended because modifications 
+      require a server restart. In production mode this is wanted. Anyway, you can configure this using the OSGi 
+      configuration admin. To see how connect configuration works read the <a href="/configuration">configuration guide</a>. 
+      The service pid is <code>com.eclipsesource.connect.static.resource.config</code>. The properties of this configuration are:
         <div class="bs-component">
            <pre><code class="java">
 use.cache=false
 use.compress=false
            </code></pre>
         </div>
-      'use.cache' enables/disables the cache. Caching means that resources are stored in memory to minimize access times. Also it enables <a href="https://en.wikipedia.org/wiki/HTTP_ETag">ETag</a> support for static resources. 'use.compress' enables/disables the JavaScript and CSS compression.
+      <code>use.cache</code> enables/disables the cache. Caching means that resources are stored in memory to minimize 
+      access times. Also it enables <a href="https://en.wikipedia.org/wiki/HTTP_ETag">ETag</a> support for static 
+      resources. <code>use.compress</code> enables/disables the JavaScript and CSS compression.
     </div>
   </div>  
 

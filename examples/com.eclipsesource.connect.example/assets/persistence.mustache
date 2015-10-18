@@ -50,7 +50,7 @@ storage.find( new Query<>( "my-place", MyObject.class ).where( "name", "Bob" ) )
   It stores all object in memory which is great for writing unit tests.<br>
   For production use connect provides a Storage implementation bassd on <a href="https://www.mongodb.com/">Mongo DB 3.x</a>.
   To use the mongo storage you need to provide a configuration for it. To see how connect configuration works read the 
-  <a href="">configuration guide</a>. The service pid to use is called <code>com.eclipsesource.connect.persistence</code>. 
+  <a href="/configuration">configuration guide</a>. The service pid to use is called <code>com.eclipsesource.connect.persistence</code>. 
   To confgure it you can create a file called <code>com.eclipsesource.connect.persistence.cfg</code> in your configuration 
   area with such connect:
     <div class="bs-component">

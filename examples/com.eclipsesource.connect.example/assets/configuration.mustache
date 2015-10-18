@@ -4,8 +4,46 @@
 {{$title}}Configuration{{/title}}
 {{$body}}
 
-      
+<div class="row">
+<div class="col-lg-12" style="padding-top: 50px">
+  <div class="page-header">
+    <h1 class="navbar">Configuration</h1>
+  </div>
+  Connect utilizes the <a href="https://osgi.org/javadoc/r4v42/org/osgi/service/cm/ConfigurationAdmin.html">OSGi Configuration Admin</a> 
+  to configure the overall system. Services like the persistence, static resource handling, search and many more can be 
+  configured by defined service pids.<br>
+  Besides the plain OSGi Config Admin connect uses <a href="http://felix.apache.org/documentation/subprojects/apache-felix-file-install.html">Apache Felix fileinstall</a> 
+  to allow having all configurations in a separate folder. All you need to do is to define the location of your configurations.
+  You can specify this by settings these VM arguments:
+    <div class="bs-component">
+       <pre><code class="java">
+-Dfelix.fileinstall.dir="${project_loc:com.eclipsesource.connect.example.configuration}/development"
+-Dfelix.fileinstall.noInitialDelay=true
+-Dfelix.fileinstall.poll=1000
+       </code></pre>
+    </div>
+    This example shows how the configuration directory is configured within an Eclipse workspace for development purpose.
+</div>
+</div>
 
+<div class="row">
+<div class="col-lg-12" style="padding-bottom: 50px">
+  <div class="page-header">
+    <h1 class="navbar">Configuration Files</h1>
+  </div>
+  Configuration files need to be namend like the service pid they configure plus a suffix <code>.cfg</code>. Let's say
+  you have a service with the pid <code>com.foo.myservice</code>. This means your config file needs to be named
+  <code>com.foo.myservice.cfg</code>. The content of those config files need to be simple java properties e.g. 
+    <div class="bs-component">
+       <pre><code class="java">
+foo=bar
+bar=foo
+       </code></pre>
+    </div>
+    This would update the <code>ManagedService</code> with the properties <code>foo</code> and <code>bar</code>.
+</div>
+</div>
+      
 {{/body}}
 {{$foot}}
 {{/foot}}
