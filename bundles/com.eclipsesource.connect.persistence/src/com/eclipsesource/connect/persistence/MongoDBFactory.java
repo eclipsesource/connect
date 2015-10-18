@@ -11,6 +11,7 @@
 package com.eclipsesource.connect.persistence;
 
 import java.util.Dictionary;
+import java.util.concurrent.CountDownLatch;
 
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
@@ -27,6 +28,7 @@ public class MongoDBFactory implements ManagedService {
 
   private final MongoDBClientFactory clientFactory;
   private MongoDatabase db;
+  private final CountDownLatch configurationLatch;
 
   public MongoDBFactory() {
     this( new MongoDBClientFactory() );
@@ -34,6 +36,7 @@ public class MongoDBFactory implements ManagedService {
 
   MongoDBFactory( MongoDBClientFactory clientFactory ) {
     this.clientFactory = clientFactory;
+    this.configurationLatch = new CountDownLatch( 1 );
   }
 
   @Override
@@ -43,6 +46,11 @@ public class MongoDBFactory implements ManagedService {
     int port = Integer.parseInt( ( String )properties.get( PROPERTY_PORT ) );
     String dbName = ( String )properties.get( PROPERTY_DB_NAME );
     db = clientFactory.createDB( host, dbName, port );
+    markConfigurationReady();
+  }
+
+  private void markConfigurationReady() {
+    configurationLatch.countDown();
   }
 
   private void validateProperties( Dictionary<String, ?> properties ) throws ConfigurationException {
@@ -58,6 +66,15 @@ public class MongoDBFactory implements ManagedService {
   }
 
   public MongoDatabase getDB() {
+    waitForConfiguration();
     return db;
+  }
+
+  private void waitForConfiguration() {
+    try {
+      configurationLatch.await();
+    } catch( InterruptedException shouldNotHappen ) {
+      throw new IllegalStateException( shouldNotHappen );
+    }
   }
 }

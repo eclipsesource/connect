@@ -11,6 +11,7 @@
 package com.eclipsesource.connect.persistence;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -18,6 +19,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.concurrent.Executors;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -98,6 +100,20 @@ public class MongoDBFactoryTest {
     mongoDBFactory.updated( configuration );
 
     assertThat( mongoDBFactory.getDB() ).isSameAs( mongoDBFactory.getDB() ).isNotNull();
+  }
+
+  @Test
+  public void testWaitsForConfigurationBeforeHandingOutDB() throws ConfigurationException {
+    MongoDBFactory mongoDBFactory = createFactory( mock( MongoDatabase.class ) );
+    Executors.newSingleThreadExecutor().submit( ( ) -> mongoDBFactory.getDB() );
+    Executors.newSingleThreadExecutor().submit( ( ) -> { try {
+        mongoDBFactory.updated( configuration );
+      } catch( Exception e ) {
+        fail();
+      }
+    });
+
+    assertThat( mongoDBFactory.getDB() ).isNotNull();
   }
 
   private MongoDBFactory createFactory( MongoDatabase db ) {
