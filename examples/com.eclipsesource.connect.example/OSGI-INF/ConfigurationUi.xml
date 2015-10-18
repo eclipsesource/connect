@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.eclipsesource.connect.example">
+   <implementation class="com.eclipsesource.connect.example.configuration.ConfigurationUi"/>
+   <service>
+      <provide interface="com.eclipsesource.connect.example.configuration.ConfigurationUi"/>
+   </service>
+</scr:component>
