@@ -4,7 +4,80 @@
 {{$title}}Persistence{{/title}}
 {{$body}}
 
-      
+<div class="row">
+	<div class="col-lg-12" style="padding-top: 50px">
+	  <div class="page-header">
+	    <h1 class="navbar">Persistence</h1>
+	  </div>
+	  Connect provides a thin persistence layer to allow storing and fetching pojos. Persistence is implemented as OSGi service and can be
+	  consumed by binding an instance of <code>com.eclipsesource.connect.api.persistence.Storage</code>. The Storage provides
+	  methods for storing, finding, deleting and counting objects. To store a simple object you do something like this:
+	    <div class="bs-component">
+	       <pre><code class="java">
+	storage.store( myObject );
+	       </code></pre>
+	    </div>
+	</div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+  <div class="page-header">
+    <h1 class="navbar">Query Language</h1>
+  </div>
+  To fetch objects from the Storage you can use a simple Query dsl. The main class for this is 
+  <code>com.eclipsesource.connect.api.persistence.Query<T></code> and is typed to allow type safety when fetching objects.
+  A sample that fetches objects from the type <code>MyObject</code> looks like this:
+    <div class="bs-component">
+       <pre><code class="java">
+storage.find( new Query<>( "my-place", MyObject.class ).where( "name", "Bob" ) );
+       </code></pre>
+    </div>
+    This query looks in the place "my-place" for an object with field called "name" which has the value "Bob". Places 
+    are like tables or collections. Besides <code>where</code> clauses you can also define sorting and limiting within a query.
+    The persistence layer takes care about creating instances of your pojos. So, all information it needs is the <code>Class</code>
+    object you pass in into the <code>Query</code> constructor.
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+  <div class="page-header">
+    <h1 class="navbar">Configuration</h1>
+  </div>
+  By default connect comes with two persistence implementations. One for test usage which is called 
+  <code>com.eclipsesource.connect.test.util.persistence.InMemoryStorage</code> and is located in the connect test util bundle.
+  It stores all object in memory which is great for writing unit tests.<br>
+  For production use connect provides a Storage implementation bassd on <a href="https://www.mongodb.com/">Mongo DB 3.x</a>.
+  To use the mongo storage you need to provide a configuration for it. To see how connect configuration works read the 
+  <a href="">configuration guide</a>. The service pid to use is called <code>com.eclipsesource.connect.persistence</code>. 
+  To confgure it you can create a file called <code>com.eclipsesource.connect.persistence.cfg</code> in your configuration 
+  area with such connect:
+    <div class="bs-component">
+       <pre><code class="java">
+db.host=127.0.0.1
+db.port=27017
+db.name=connect-example
+       </code></pre>
+    </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-12" style="padding-bottom: 50px">
+  <div class="page-header">
+    <h1 class="navbar">Identifying Objects</h1>
+  </div>
+  To identify objects connect provides a type called <code>com.eclipsesource.connect.model.internal.ObjectId</code>. To 
+  give your own model objects an id simply add an field of the type ObjectId and initiate it within the constructor.
+  The storage will serialize your id into a field called <code>_id</code> which can be used to query for it:
+    <div class="bs-component">
+       <pre><code class="java">
+storage.find( new Query<>( "my-place", MyObject.class ).where( "_id", "21312312dwdasd23123" ) );
+       </code></pre>
+    </div>
+</div>
+</div>
 
 {{/body}}
 {{$foot}}
