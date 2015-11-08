@@ -14,6 +14,8 @@ import static com.eclipsesource.connect.mvc.internal.etag.ETagTestUtil.createReq
 import static com.eclipsesource.connect.mvc.internal.etag.ETagTestUtil.createResourceInfo;
 import static com.eclipsesource.connect.mvc.internal.etag.ETagTestUtil.createResponseContext;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
@@ -23,6 +25,8 @@ import javax.ws.rs.core.Response.Status;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.eclipsesource.connect.mvc.internal.StaticResourceConfiguration;
 
 
 
@@ -41,6 +45,10 @@ public class ETagIntegrationTest {
     responseFilter.setETagCache( eTagCache );
     requestFilter.resourceInfo = createResourceInfo( CacheableResource.class, "get" );
     responseFilter.resourceInfo = createResourceInfo( CacheableResource.class, "get" );
+    StaticResourceConfiguration configuration = mock( StaticResourceConfiguration.class );
+    when( configuration.useCache() ).thenReturn( true );
+    responseFilter.setStaticResourceConfiguration( configuration );
+    requestFilter.setStaticResourceConfiguration( configuration );
   }
 
   @Test
