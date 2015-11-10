@@ -118,7 +118,7 @@ public class MongoDBFactoryTest {
 
   private MongoDBFactory createFactory( MongoDatabase db ) {
     MongoDBClientFactory clientFactory = mock( MongoDBClientFactory.class );
-    when( clientFactory.createDB( anyString(), anyString(), anyInt() ) ).thenReturn( db );
+    when( clientFactory.createDB( anyString(), anyString(), anyInt(), anyString(), anyString() ) ).thenReturn( db );
     MongoDBFactory mongoDBFactory = new MongoDBFactory( clientFactory );
     return mongoDBFactory;
   }

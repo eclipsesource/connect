@@ -25,6 +25,8 @@ public class MongoDBFactory implements ManagedService {
   static final String PROPERTY_HOST = "db.host";
   static final String PROPERTY_PORT = "db.port";
   static final String PROPERTY_DB_NAME = "db.name";
+  static final String PROPERTY_DB_USER = "db.user";
+  static final String PROPERTY_DB_PASSWORD = "db.password";
 
   private final MongoDBClientFactory clientFactory;
   private MongoDatabase db;
@@ -45,7 +47,9 @@ public class MongoDBFactory implements ManagedService {
     String host = ( String )properties.get( PROPERTY_HOST );
     int port = Integer.parseInt( ( String )properties.get( PROPERTY_PORT ) );
     String dbName = ( String )properties.get( PROPERTY_DB_NAME );
-    db = clientFactory.createDB( host, dbName, port );
+    String user = ( String )properties.get( PROPERTY_DB_USER );
+    String password = ( String )properties.get( PROPERTY_DB_PASSWORD );
+    db = clientFactory.createDB( host, dbName, port, user, password );
     markConfigurationReady();
   }
 
