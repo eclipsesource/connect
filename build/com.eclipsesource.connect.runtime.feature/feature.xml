@@ -2,7 +2,7 @@
 <feature
       id="com.eclipsesource.connect.runtime"
       label="Connect Runtime"
-      version="1.1.0.qualifier"
+      version="1.1.1.qualifier"
       provider-name="EclipseSource">
 
    <description>
