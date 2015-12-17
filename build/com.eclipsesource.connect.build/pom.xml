@@ -63,6 +63,10 @@
     <module>../com.eclipsesource.connect.testing.feature</module>
     <!-- Repository -->
     <module>../com.eclipsesource.connect.repository</module>
+    <!-- Example -->
+    <module>../../examples/com.eclipsesource.connect.example</module>
+    <module>../../examples/com.eclipsesource.connect.example.feature</module>
+    <module>../../examples/com.eclipsesource.connect.example.product</module>
   </modules>
 
   <build>

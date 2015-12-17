@@ -13,24 +13,24 @@ module.exports = function(grunt) {
     copy: {
       product: {
         expand: true,
-        cwd: "build/com.eclipsesource.connect.product/target/products/",
+        cwd: "examples/com.eclipsesource.connect.example.product/target/products/",
         src: [ "*.zip" ],
         dest: buildFolder + "/unpackaged"
       },
       staging: {
         files: [
           { expand: true, src: '**', dest: buildFolder + "/unpackaged/staging", cwd:  buildFolder + "/unpackaged/extracted" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/etc", cwd: "build/com.eclipsesource.connect.configuration/staging" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/mail", cwd: "build/com.eclipsesource.connect.configuration/mail" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/log", cwd: "build/com.eclipsesource.connect.configuration/log" }
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/etc", cwd: "examples/com.eclipsesource.connect.example.configuration/staging" },
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/mail", cwd: "examples/com.eclipsesource.connect.example.configuration/mail" },
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/log", cwd: "examples/com.eclipsesource.connect.example.configuration/log" }
         ]
       },
       production: {
         files: [
           { expand: true, src: '**', dest: buildFolder + "/unpackaged/production", cwd:  buildFolder + "/unpackaged/extracted" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/etc", cwd: "build/com.eclipsesource.connect.configuration/production" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/mail", cwd: "build/com.eclipsesource.connect.configuration/mail" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/log", cwd: "build/com.eclipsesource.connect.configuration/log" }
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/etc", cwd: "examples/com.eclipsesource.connect.example.configuration/production" },
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/mail", cwd: "examples/com.eclipsesource.connect.example.configuration/mail" },
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/log", cwd: "examples/com.eclipsesource.connect.example.configuration/log" }
         ]
       }
     },

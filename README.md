@@ -8,3 +8,6 @@ To build connect just clone the repository and execute the following from within
 npm install
 grunt
 ```
+
+## Licensing
+Connect is published under the terms of the [Eclipse Public License - v 1.0](https://www.eclipse.org/legal/epl-v10.html).

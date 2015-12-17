@@ -1,10 +1,10 @@
 {
-  "name": "tabris-connect",
-  "version": "1.0.0",
-  "homepage": "http://tabrisjs.com/",
+  "name": "connect",
+  "version": "1.1.2",
+  "homepage": "https://github.com/eclipsesource/connect",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eclipsesource/tabris-connect.git"
+    "url": "https://github.com/eclipsesource/connect.git"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

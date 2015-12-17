@@ -6,14 +6,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>com.eclipsesource.tabris.connect</artifactId>
-		<groupId>com.eclipsesource</groupId>
+		<groupId>com.eclipsesource.connect</groupId>
+    <artifactId>com.eclipsesource.connect</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../com.eclipsesource.tabris.connect.build/</relativePath>
+		<relativePath>../../build/com.eclipsesource.connect.build</relativePath>
 	</parent>
 
 	<groupId>com.eclipsesource</groupId>
-	<artifactId>com.eclipsesource.tabris.connect.product</artifactId>
+	<artifactId>com.eclipsesource.connect.example.product</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>eclipse-repository</packaging>
 
