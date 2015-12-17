@@ -15,6 +15,7 @@ import com.eclipsesource.connect.model.Id;
 import com.fatboyindustrial.gsonjavatime.Converters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.LongSerializationPolicy;
 
 
 public class GsonFactory {
@@ -27,6 +28,7 @@ public class GsonFactory {
       builder.setPrettyPrinting();
     }
     builder.registerTypeAdapter( Id.class, new IdTypeAdapter() );
+    builder.setLongSerializationPolicy( LongSerializationPolicy.STRING );
     Converters.registerAll( builder );
     addFieldNamingStrategy( builder );
     return builder.create();
@@ -43,4 +45,5 @@ public class GsonFactory {
       return field.getName();
     } );
   }
+
 }
