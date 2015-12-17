@@ -13,24 +13,24 @@ module.exports = function(grunt) {
     copy: {
       product: {
         expand: true,
-        cwd: "build/com.eclipsesource.tabris.connect.product/target/products/",
+        cwd: "build/com.eclipsesource.connect.product/target/products/",
         src: [ "*.zip" ],
         dest: buildFolder + "/unpackaged"
       },
       staging: {
         files: [
           { expand: true, src: '**', dest: buildFolder + "/unpackaged/staging", cwd:  buildFolder + "/unpackaged/extracted" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/etc", cwd: "build/com.eclipsesource.tabris.connect.configuration/staging" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/mail", cwd: "build/com.eclipsesource.tabris.connect.configuration/mail" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/log", cwd: "build/com.eclipsesource.tabris.connect.configuration/log" }
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/etc", cwd: "build/com.eclipsesource.connect.configuration/staging" },
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/mail", cwd: "build/com.eclipsesource.connect.configuration/mail" },
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/staging/log", cwd: "build/com.eclipsesource.connect.configuration/log" }
         ]
       },
       production: {
         files: [
           { expand: true, src: '**', dest: buildFolder + "/unpackaged/production", cwd:  buildFolder + "/unpackaged/extracted" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/etc", cwd: "build/com.eclipsesource.tabris.connect.configuration/production" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/mail", cwd: "build/com.eclipsesource.tabris.connect.configuration/mail" },
-          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/log", cwd: "build/com.eclipsesource.tabris.connect.configuration/log" }
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/etc", cwd: "build/com.eclipsesource.connect.configuration/production" },
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/mail", cwd: "build/com.eclipsesource.connect.configuration/mail" },
+          { expand: true, src: '*', dest: buildFolder + "/unpackaged/production/log", cwd: "build/com.eclipsesource.connect.configuration/log" }
         ]
       }
     },
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         command: "mvn clean verify -e -X -B -DfullBuild=true",
         options: {
           execOptions: {
-            cwd: "build/com.eclipsesource.tabris.connect.build",
+            cwd: "build/com.eclipsesource.connect.build",
             maxBuffer: Infinity
           }
         }
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
         "Bundle-Vendor" : "EclipseSource",
         "Fragment-Host" : bundleName + ";bundle-version=\"1.0.0\"",
         "Bundle-RequiredExecutionEnvironment" : "JavaSE-1.8",
-        "Require-Bundle" : "org.junit;bundle-version=\"[4.11.0,5.0.0)\",\n org.mockito.mockito-all;bundle-version=\"[1.9.0,2.0.0)\",\n org.assertj.core;bundle-version=\"[1.6.0,2.0.0)\",\n com.eclipsesource.rest.client.driver;bundle-version=\"[1.0.0,2.0.0)\",\n com.eclipsesource.tabris.connect.test.util;bundle-version=\"[1.0.0,2.0.0)\"",
+        "Require-Bundle" : "org.junit;bundle-version=\"[4.11.0,5.0.0)\",\n org.mockito.mockito-all;bundle-version=\"[1.9.0,2.0.0)\",\n org.assertj.core;bundle-version=\"[1.6.0,2.0.0)\",\n com.eclipsesource.rest.client.driver;bundle-version=\"[1.0.0,2.0.0)\",\n com.eclipsesource.connect.test.util;bundle-version=\"[1.0.0,2.0.0)\"",
         "Import-Package" : "javax.servlet;version=\"[2.6.0,4.0.0)\",\n javax.servlet.http;version=\"[2.6.0,4.0.0)\""
       }
     };
@@ -132,8 +132,8 @@ module.exports = function(grunt) {
     var bundleName = grunt.option( "name" );
     var testName = bundleName + ".test";
     var groupId = "com.eclipsesource";
-    var parentId = "com.eclipsesource.tabris.connect";
-    var pom = "build/com.eclipsesource.tabris.connect.build";
+    var parentId = "com.eclipsesource.connect";
+    var pom = "build/com.eclipsesource.connect.build";
     var config = {
       pom : pom,
       feature : grunt.option( "feature" ),
