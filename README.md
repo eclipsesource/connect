@@ -1,5 +1,5 @@
-# Connect
-[ ![Codeship Status for eclipsesource/connect](https://codeship.com/projects/89fb08a0-86c2-0133-1eb7-0adb093d7581/status?branch=master)](https://codeship.com/projects/122740)
+# Connect [ ![Codeship Status for eclipsesource/connect](https://codeship.com/projects/89fb08a0-86c2-0133-1eb7-0adb093d7581/status?branch=master)](https://codeship.com/projects/122740)
+
 Platform that integrates OSGi with MongoDB, Jersey, Lucene and a Mustache Template Engine.
 
 ## Build
