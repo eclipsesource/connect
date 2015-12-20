@@ -12,12 +12,18 @@ package com.eclipsesource.connect.persistence.integrationtest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
 
 import com.eclipsesource.connect.api.persistence.Query;
+import com.google.common.io.CharSource;
 
 
 public class ReadWriteTest extends PersistenceTest {
@@ -48,13 +54,35 @@ public class ReadWriteTest extends PersistenceTest {
   }
 
   @Test
+  public void testStoresObjectWithStream() throws IOException {
+    InputStream stream = new ByteArrayInputStream( "foo".getBytes( "utf-8" ) );
+    TestTypeWithStream object = new TestTypeWithStream( stream );
+    getStorage().store( "foo-stream", object );
+
+    List<TestTypeWithStream> all = getStorage().findAll( new Query<>( "foo-stream", TestTypeWithStream.class ).where( "_id", object.getId().toString() ) );
+
+    String streamContent = read( all.get( 0 ).getStream() );
+    assertThat( streamContent ).isEqualTo( "foo" );
+  }
+
+  private String read( InputStream stream ) throws IOException {
+    return new CharSource() {
+
+      @Override
+      public Reader openStream() throws IOException {
+        return new InputStreamReader( stream );
+      }
+    }.read();
+  }
+
+  @Test
   public void testUpdatesObject() {
     TestTypeWithId object = new TestTypeWithId( "foo" );
-  
+
     getStorage().store( "foo-store", object );
     object.setName( "bar" );
     getStorage().store( "foo-store", object );
-  
+
     List<TestTypeWithId> all = getStorage().findAll( new Query<>( "foo-store", TestTypeWithId.class ) );
     assertThat( all ).hasSize( 1 );
     assertThat( all.get( 0 ).getName() ).isEqualTo( "bar" );

@@ -13,21 +13,21 @@ package com.eclipsesource.connect.test.util.persistence;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.mongodb.client.model.Filters.eq;
 
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.osgi.service.cm.ConfigurationException;
 
 import com.eclipsesource.connect.api.persistence.Query;
 import com.eclipsesource.connect.api.persistence.Query.SortDirection;
 import com.eclipsesource.connect.api.persistence.Storage;
-import com.eclipsesource.connect.serialization.GsonSerialization;
+import com.eclipsesource.connect.serialization.GsonFactory;
 import com.github.fakemongo.Fongo;
+import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -40,19 +40,12 @@ public class InMemoryStorage implements Storage {
   private static final UpdateOptions UPDATE_OPTIONS = new UpdateOptions().upsert( true );
 
   private MongoDatabase db;
-  private GsonSerialization serialization;
+  private Gson gson;
 
   public InMemoryStorage() {
     Fongo fongo = new Fongo("mongo server 1");
     db = fongo.getDatabase( "test-db" );
-    serialization = new GsonSerialization();
-    try {
-      Hashtable<String, Object> properties = new Hashtable<>();
-      properties.put( "pretty.printing", "true" );
-      serialization.updated( properties );
-    } catch( ConfigurationException shouldNotHappen ) {
-      throw new IllegalStateException( shouldNotHappen );
-    }
+    gson = GsonFactory.createBuilder( false ).registerTypeAdapter( InputStream.class, new InputStreamTypeAdapter( db ) ).create();
   }
 
   @Override
@@ -109,7 +102,7 @@ public class InMemoryStorage implements Storage {
   }
 
   private void addDocument( List<Document> documents, Object object ) {
-    String serializedObject = serialization.serialize( object );
+    String serializedObject = gson.toJson( object );
     Document document = Document.parse( serializedObject );
     ensureId( document );
     documents.add( document );
@@ -137,7 +130,7 @@ public class InMemoryStorage implements Storage {
     MongoCollection<Document> collection = db.getCollection( query.getPlace() );
     List<T> result = new ArrayList<>();
     for( Document document : prepareIterable( query, collection.find( createDocument( query ) ) ) ) {
-      result.add( serialization.deserialize( document.toJson(), query.getType() ) );
+      result.add( gson.fromJson( document.toJson(), query.getType() ) );
     }
     return result;
   }

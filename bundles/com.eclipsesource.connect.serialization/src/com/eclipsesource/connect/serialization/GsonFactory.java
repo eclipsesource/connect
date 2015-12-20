@@ -23,6 +23,10 @@ public class GsonFactory {
   static final String KEY_ID = "_id";
 
   public static Gson create( boolean prettyPrinting ) {
+    return createBuilder( prettyPrinting ).create();
+  }
+
+  public static GsonBuilder createBuilder( boolean prettyPrinting ) {
     GsonBuilder builder = new GsonBuilder();
     if( prettyPrinting ) {
       builder.setPrettyPrinting();
@@ -31,7 +35,7 @@ public class GsonFactory {
     builder.setLongSerializationPolicy( LongSerializationPolicy.STRING );
     Converters.registerAll( builder );
     addFieldNamingStrategy( builder );
-    return builder.create();
+    return builder;
   }
 
   private static void addFieldNamingStrategy( GsonBuilder builder ) {

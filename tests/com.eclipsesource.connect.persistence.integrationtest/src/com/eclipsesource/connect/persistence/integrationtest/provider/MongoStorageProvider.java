@@ -19,7 +19,6 @@ import com.eclipsesource.connect.api.persistence.Storage;
 import com.eclipsesource.connect.persistence.MongoDBFactory;
 import com.eclipsesource.connect.persistence.MongoStorage;
 import com.eclipsesource.connect.persistence.integrationtest.StorageProvider;
-import com.eclipsesource.connect.serialization.GsonSerialization;
 
 
 public class MongoStorageProvider implements StorageProvider {
@@ -38,10 +37,6 @@ public class MongoStorageProvider implements StorageProvider {
     MongoDBFactory dbFactory = getDbFactory();
     dbFactory.getDB().drop();
     MongoStorage storage = new MongoStorage();
-    GsonSerialization serialization = new GsonSerialization();
-    serialization.updated( new Hashtable<>() );
-    storage.setSerializer( serialization );
-    storage.setDeserializer( serialization );
     storage.setDBFactory( dbFactory );
     return storage;
   }

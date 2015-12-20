@@ -13,6 +13,7 @@ package com.eclipsesource.connect.persistence;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.mongodb.client.model.Filters.eq;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,10 +29,11 @@ import com.eclipsesource.connect.api.persistence.Query;
 import com.eclipsesource.connect.api.persistence.Query.SortDirection;
 import com.eclipsesource.connect.api.persistence.Storage;
 import com.eclipsesource.connect.api.persistence.StorageObserver;
-import com.eclipsesource.connect.api.serialization.Deserializer;
-import com.eclipsesource.connect.api.serialization.Serializer;
+import com.eclipsesource.connect.persistence.util.InputStreamTypeAdapter;
+import com.eclipsesource.connect.serialization.GsonFactory;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -46,8 +48,7 @@ public class MongoStorage implements Storage {
   private final List<StorageObserver> observers;
   private final ExecutorService executor;
   private MongoDBFactory factory;
-  private Serializer serializer;
-  private Deserializer deserializer;
+  private Gson gson;
 
   public MongoStorage() {
     this( Executors.newSingleThreadExecutor( new ThreadFactoryBuilder().setNameFormat( "storage-observer-notifier-%d" ).build() ) );
@@ -116,7 +117,7 @@ public class MongoStorage implements Storage {
   }
 
   private void addDocument( List<Document> documents, Object object ) {
-    String serializedObject = serializer.serialize( object );
+    String serializedObject = getGson().toJson( object );
     Document document = Document.parse( serializedObject );
     ensureId( document );
     documents.add( document );
@@ -157,7 +158,7 @@ public class MongoStorage implements Storage {
     MongoCollection<Document> collection = db.getCollection( query.getPlace() );
     List<T> result = new ArrayList<>();
     for( Document document : prepareIterable( query, collection.find( createDocument( query ) ) ) ) {
-      result.add( deserializer.deserialize( document.toJson(), query.getType() ) );
+      result.add( getGson().fromJson( document.toJson(), query.getType() ) );
     }
     return result;
   }
@@ -198,20 +199,11 @@ public class MongoStorage implements Storage {
     this.factory = null;
   }
 
-  public void setSerializer( Serializer serializer ) {
-    this.serializer = serializer;
-  }
-
-  public void unsetSerializer( Serializer serializer ) {
-    this.serializer = null;
-  }
-
-  public void setDeserializer( Deserializer deserializer ) {
-    this.deserializer = deserializer;
-  }
-
-  public void unsetDeserializer( Deserializer deserializer ) {
-    this.deserializer = null;
+  private Gson getGson() {
+    if( gson == null ) {
+      gson = GsonFactory.createBuilder( false ).registerTypeAdapter( InputStream.class, new InputStreamTypeAdapter( factory.getDB() ) ).create();
+    }
+    return gson;
   }
 
   void addObserver( StorageObserver observer ) {

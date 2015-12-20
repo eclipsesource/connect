@@ -5,7 +5,5 @@
       <provide interface="com.eclipsesource.connect.api.persistence.Storage"/>
    </service>
    <reference bind="setDBFactory" cardinality="1..1" interface="com.eclipsesource.connect.persistence.MongoDBFactory" name="MongoDBFactory" policy="static" unbind="unsetDBFactory"/>
-   <reference bind="setSerializer" cardinality="1..1" interface="com.eclipsesource.connect.api.serialization.Serializer" name="Serializer" policy="static" unbind="unsetSerializer"/>
-   <reference bind="setDeserializer" cardinality="1..1" interface="com.eclipsesource.connect.api.serialization.Deserializer" name="Deserializer" policy="static" unbind="unsetDeserializer"/>
    <reference bind="addObserver" cardinality="0..n" interface="com.eclipsesource.connect.api.persistence.StorageObserver" name="StorageObserver" policy="dynamic" unbind="removeObserver"/>
 </scr:component>

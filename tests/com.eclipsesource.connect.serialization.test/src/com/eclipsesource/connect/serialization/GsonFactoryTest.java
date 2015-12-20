@@ -17,6 +17,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 
@@ -27,6 +28,13 @@ public class GsonFactoryTest {
     Gson gson = GsonFactory.create( true );
 
     assertThat( gson ).isNotNull();
+  }
+
+  @Test
+  public void testCreatesGsonBuilder() {
+    GsonBuilder builder = GsonFactory.createBuilder( true );
+
+    assertThat( builder ).isNotNull();
   }
 
   @Test

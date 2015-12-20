@@ -31,8 +31,6 @@ import org.mockito.stubbing.Answer;
 
 import com.eclipsesource.connect.api.persistence.Query;
 import com.eclipsesource.connect.api.persistence.StorageObserver;
-import com.eclipsesource.connect.api.serialization.Deserializer;
-import com.eclipsesource.connect.api.serialization.Serializer;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -49,20 +47,6 @@ public class MongoStorageTest {
   public void setUp() {
     mongoStorage = new MongoStorage( createSynchronousExecutor() );
     createDBFactory();
-    createSerializer();
-    createDeserializer();
-  }
-
-  private void createDeserializer() {
-    Deserializer deserializer = mock( Deserializer.class );
-    when( deserializer.deserialize( anyString(), eq( Object.class ) ) ).thenReturn( "foo" );
-    mongoStorage.setDeserializer( deserializer );
-  }
-
-  private void createSerializer() {
-    Serializer serializer = mock( Serializer.class );
-    when( serializer.serialize( any( Object.class ) ) ).thenReturn( "{\"foo\":\"bar\"}" );
-    mongoStorage.setSerializer( serializer );
   }
 
   private void createDBFactory() {
