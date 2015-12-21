@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecRegistry;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -64,6 +65,7 @@ public class MongoStorageTest {
     FindIterable<Document> iterable = mock( FindIterable.class );
     when( iterable.iterator() ).thenReturn( mock( MongoCursor.class ) );
     when( collection.find( any( Document.class ) ) ).thenReturn( iterable );
+    when( collection.withCodecRegistry( any( CodecRegistry.class ) ) ).thenReturn( collection );
     when( db.getCollection( anyString() ) ).thenReturn( collection );
     return collection;
   }
