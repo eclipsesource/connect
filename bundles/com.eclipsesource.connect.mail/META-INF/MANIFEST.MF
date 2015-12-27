@@ -11,8 +11,8 @@ Require-Bundle: javax.mail.glassfish;bundle-version="1.4.1",
 Import-Package: com.eclipsesource.connect.api.asset;version="[1.0.0,2.0.0)",
  com.eclipsesource.connect.api.mail;version="[1.0.0,2.0.0)",
  com.github.mustachejava;version="[0.8.15,1.0.0)",
- com.google.common.base;version="[17.0.0,20.0.0)",
- com.google.common.io;version="[17.0.0,20.0.0)",
- com.google.common.util.concurrent;version="[17.0.0,20.0.0)",
+ com.google.common.base;version="[19.0.0,30.0.0)",
+ com.google.common.io;version="[19.0.0,30.0.0)",
+ com.google.common.util.concurrent;version="[19.0.0,30.0.0)",
  org.osgi.service.cm;version="[1.2.0,2.0.0)"
 Service-Component: OSGI-INF/*.xml

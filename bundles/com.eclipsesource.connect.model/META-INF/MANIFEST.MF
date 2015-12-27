@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EclipseSource
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Import-Package: com.google.common.base;version="[17.0.0,20.0.0)",
- com.google.common.collect;version="[17.0.0,20.0.0)",
+Import-Package: com.google.common.base;version="[19.0.0,30.0.0)",
+ com.google.common.collect;version="[19.0.0,30.0.0)",
  com.google.gson;version="[2.2.0,3.0.0)"
 Export-Package: com.eclipsesource.connect.model;version="1.0.0"

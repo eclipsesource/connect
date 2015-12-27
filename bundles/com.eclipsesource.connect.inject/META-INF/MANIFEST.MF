@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EclipseSource
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.eclipsesource.connect.api.inject;version="[1.0.0,2.0.0)",
- com.google.common.base;version="[17.0.0,20.0.0)",
+ com.google.common.base;version="[19.0.0,30.0.0)",
  javax.inject;version="[1.0.0,2.0.0)",
  javax.ws.rs.core;version="[2.0.0,3.0.0)",
  org.glassfish.hk2.api;version="[2.3.0,3.0.0)",
