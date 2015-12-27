@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Gson Serialization
 Bundle-SymbolicName: com.eclipsesource.connect.serialization
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: EclipseSource
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
@@ -17,4 +17,4 @@ Import-Package: com.eclipsesource.connect.api.serialization;version="[1.0.0,2.0.
  org.osgi.service.cm;version="[1.2.0,2.0.0)"
 Service-Component: OSGI-INF/GsonSerialization.xml,
  OSGI-INF/GsonProvider.xml
-Export-Package: com.eclipsesource.connect.serialization;version="1.0.0"
+Export-Package: com.eclipsesource.connect.serialization;version="1.1.0"
