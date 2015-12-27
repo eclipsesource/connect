@@ -18,11 +18,13 @@ import static org.mockito.Mockito.when;
 
 import javax.inject.Singleton;
 
+import org.glassfish.hk2.api.Factory;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.jersey.server.internal.inject.MultivaluedParameterExtractorProvider;
 import org.glassfish.jersey.server.model.Parameter;
 import org.junit.Test;
 
+import com.eclipsesource.connect.api.inject.Connect;
 import com.eclipsesource.connect.api.inject.ConnectProvider;
 import com.eclipsesource.connect.api.inject.Resolver;
 
@@ -41,7 +43,7 @@ public class ConnectValueFactoryProviderTest {
     MultivaluedParameterExtractorProvider provider = mock( MultivaluedParameterExtractorProvider.class );
     ServiceLocator injector = mock( ServiceLocator.class );
     ConnectValueFactoryProvider valueFactoryProvider = new ConnectValueFactoryProvider( provider, injector );
-    Parameter parameter = mockParameter();
+    Parameter parameter = mockParameter( true );
 
     valueFactoryProvider.createValueFactory( parameter ).provide();
   }
@@ -52,16 +54,30 @@ public class ConnectValueFactoryProviderTest {
     MultivaluedParameterExtractorProvider provider = mock( MultivaluedParameterExtractorProvider.class );
     ServiceLocator injector = mockServiceLocator( object );
     ConnectValueFactoryProvider valueFactoryProvider = new ConnectValueFactoryProvider( provider, injector );
-    Parameter parameter = mockParameter();
+    Parameter parameter = mockParameter( true );
 
     Object provided = valueFactoryProvider.createValueFactory( parameter ).provide();
 
     assertThat( provided ).isSameAs( object );
   }
 
-  private Parameter mockParameter() {
+  @Test
+  public void testCreatesNullFactoryForNonConnectParam() {
+    Object object = new Object();
+    MultivaluedParameterExtractorProvider provider = mock( MultivaluedParameterExtractorProvider.class );
+    ServiceLocator injector = mockServiceLocator( object );
+    ConnectValueFactoryProvider valueFactoryProvider = new ConnectValueFactoryProvider( provider, injector );
+    Parameter parameter = mockParameter( false );
+
+    Factory<?> factory = valueFactoryProvider.createValueFactory( parameter );
+
+    assertThat( factory ).isNull();
+  }
+
+  private Parameter mockParameter( boolean isConnectParam ) {
     Parameter parameter = mock( Parameter.class );
     doReturn( Object.class ).when( parameter ).getRawType();
+    when( parameter.isAnnotationPresent( Connect.class ) ).thenReturn( isConnectParam );
     return parameter;
   }
 

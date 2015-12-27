@@ -23,6 +23,7 @@ import org.glassfish.jersey.server.internal.inject.AbstractValueFactoryProvider;
 import org.glassfish.jersey.server.internal.inject.MultivaluedParameterExtractorProvider;
 import org.glassfish.jersey.server.model.Parameter;
 
+import com.eclipsesource.connect.api.inject.Connect;
 import com.eclipsesource.connect.api.inject.ConnectProvider;
 
 
@@ -36,6 +37,13 @@ public class ConnectValueFactoryProvider extends AbstractValueFactoryProvider {
 
   @Override
   protected Factory<?> createValueFactory( Parameter parameter ) {
+    if( parameter.isAnnotationPresent( Connect.class ) ) {
+      return createConnectValueFactory( parameter );
+    }
+    return null;
+  }
+
+  private Factory<?> createConnectValueFactory( Parameter parameter ) {
     return new AbstractContainerRequestValueFactory<Object>() {
 
       @Override
@@ -45,6 +53,8 @@ public class ConnectValueFactoryProvider extends AbstractValueFactoryProvider {
         ConnectProvider<?> provider = container.getProvider( parameter.getRawType() );
         return provider.provide( new PlatformResolver( getLocator() ) );
       }
+
     };
   }
+
 }
