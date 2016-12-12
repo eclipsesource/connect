@@ -2,7 +2,7 @@
 <feature
       id="com.eclipsesource.tabris.connect.additionals.feature"
       label="OSGi Target Additionals"
-      version="1.54.0.201612121256"
+      version="1.54.0.201612121404"
       provider-name="EclipseSource">
 
    <description url="http://www.example.com/description">
@@ -634,14 +634,21 @@
          unpack="false"/>
 
    <plugin
-         id="com.googlecode.plist.dd-plist"
+         id="bcpkix"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.googlecode.plist.dd-plist.source"
+         id="bcprov"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.googlecode.plist.dd-plist"
          download-size="0"
          install-size="0"
          version="0.0.0"

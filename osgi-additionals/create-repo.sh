@@ -19,7 +19,7 @@ usage() {
 
 fail() {
   echo P2 Repository Tool
-  if [ $# gt 0 ]; then
+  if [ $# -gt 0 ]; then
     echo "Error: $1"
   fi
   usage
@@ -46,8 +46,8 @@ cp feature.xml /tmp/repository/features
 
 java -jar $launcher \
   -application org.eclipse.equinox.p2.publisher.FeaturesAndBundlesPublisher \
-  -metadataRepository file:$(pwd) \
-  -artifactRepository file:$(pwd) \
+  -metadataRepository file:$(pwd)/target/ \
+  -artifactRepository file:$(pwd)/target/ \
   -source /tmp/repository \
   -configs gtk.linux.x86 \
   -compress \
