@@ -46,10 +46,9 @@ cp feature.xml /tmp/repository/features
 
 java -jar $launcher \
   -application org.eclipse.equinox.p2.publisher.FeaturesAndBundlesPublisher \
-  -metadataRepository file:$(pwd)/target/ \
-  -artifactRepository file:$(pwd)/target/ \
+  -metadataRepository file:$(pwd) \
+  -artifactRepository file:$(pwd) \
   -source /tmp/repository \
-  -configs gtk.linux.x86 \
   -compress \
   -publishArtifacts \
   || fail
